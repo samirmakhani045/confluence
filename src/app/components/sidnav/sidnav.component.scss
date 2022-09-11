@@ -1,0 +1,97 @@
+.collapse-main-section{
+    padding: 53px 25px 120px 25px !important;
+}
+.collapse-bottom-wrapper{
+    padding-left: 1px !important;   
+}
+.main-sidenav-function{
+    top: 88px;
+    padding: 53px 127px 120px 53px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: calc(100vh - 88px);
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    transition: 0.5s;
+
+    .top-wrapper{
+        display: grid;
+        .navbar-wrapper{
+            display: grid;
+            gap: 24px;
+            .list-wrapper{
+                display: flex;
+                gap: 38px;
+                align-items: center;
+                .navbar-text{
+                    font-family: 'Montserrat';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 19.31px;  
+                    color: #A4B6E1;                 
+                }
+                .navbar-text:hover{
+                    color: #193F9A;
+                }
+                .dashboard-icon{
+                    width: 22px;
+                    height: 20px;
+                    background: {
+                        image:url(../../../assets/imgaes/sidenav/Union.png);
+                        position: center;
+                        repeat:no-repeat;
+                        size: cover;
+                        color: #FFFFFF;
+                    };  
+                                  
+                }
+                .users-icon{
+                    width: 21px;
+                    height: 16px;
+                    background: {
+                        image:url(../../../assets/imgaes/sidenav/Users.png);
+                        position: center;
+                        repeat:no-repeat;
+                        size: cover;
+                        color: #FFFFFF;
+                    };     
+                }
+                .reports-icon{
+                    width: 24px;
+                    height: 24px;
+                    background: {
+                        image:url(../../../assets/imgaes/sidenav/Repots.png);
+                        position: center;
+                        repeat:no-repeat;
+                        size: cover;
+                        color: #FFFFFF;
+                    };     
+                }
+            }
+        }
+    }
+    .bottom-wrapper{
+        // padding-left: 30px;
+        display: flex;
+        gap: 16px;
+        .logout-icon{
+            width: 28px;
+            height: 28px;
+            background: {
+                image:url(../../../assets/imgaes/sidenav/logout.png);
+                position: center;
+                repeat:no-repeat;
+                size: cover;
+            };     
+        }
+        .logout-text{
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22.3125px;
+            color: #A4B6E1;          
+        }
+    }
+
+}

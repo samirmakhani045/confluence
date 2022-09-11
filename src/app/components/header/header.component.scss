@@ -1,0 +1,79 @@
+.main-header-section{
+    height: 88px;
+    background: #19409a;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    z-index: 999;
+    .left-wrapper{
+        margin-left: 53px;
+        display: flex;
+        align-items: center;
+        .header-logo{
+            width: 30px;
+            height: 31px;
+            background: {
+                image:url(../../../assets/imgaes/header/headerlogo.png);
+                position: center;
+                repeat:no-repeat;
+                size: cover;
+                color: #FFFFFF;
+            };
+            margin-right: 17px;
+        }
+        .logo-text{
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 44px;
+            color: #FFFFFF;  
+            margin-right: 42px;        
+        }
+        .menu-logo{
+            width: 21px;
+            height: 20px;
+            background: {
+                image:url(../../../assets/imgaes/header/Menu.png);
+                position: center;
+                repeat:no-repeat;
+                size: cover;
+                color: #19409a;
+            };
+        }
+    }
+    .right-wrapper{
+        margin-right: 43px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        .user-icon-logo{
+            width: 37px;
+            height: 35px;
+            background: {
+                image:url(../../../assets/imgaes/header/userIcon.png);
+                position: center;
+                repeat:no-repeat;
+                size: cover;
+                color: #19409a;
+            };
+            color: #FFFFFF;
+        }
+        .user-details-wrapper{
+            display: grid;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-size: 15px;
+            line-height: 16px;
+            color: #FFFFFF;
+            .name-text{
+                font-weight: 400;
+            }
+            .admin-text{
+                font-weight: bold;
+            }
+        }
+    }
+}

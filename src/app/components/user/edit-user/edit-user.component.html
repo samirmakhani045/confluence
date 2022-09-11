@@ -1,0 +1,194 @@
+<div class="main-content">
+  <h3>Add User</h3>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <form #userForm="ngForm">
+            <div class="form-group row">
+              <label for="firstName" class="col-sm-12 col-form-label">FirstName</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="firstName" placeholder="Enter FirstName"
+                  [(ngModel)]="editUserData.firstName" required minlength="1" maxlength="50"
+                  [class.error]="firstName.invalid" name="firstName" #firstName="ngModel" required required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    FirstName is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="lastName" class="col-sm-12 col-form-label">LastName</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="lastName" placeholder="Enter LastName"
+                  [(ngModel)]="editUserData.lastName" required minlength="1" maxlength="50"
+                  [class.error]="lastName.invalid" name="lastName" #lastName="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    LastName is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="middleInitial" class="col-sm-12 col-form-label">MiddleInitial</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="middleInitial" placeholder="Enter MiddleInitial"
+                  [(ngModel)]="editUserData.middleInitial" required minlength="1" maxlength="50"
+                  [class.error]="middleInitial.invalid" name="middleInitial" #middleInitial="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    MiddleInitial is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="businessName" class="col-sm-12 col-form-label">BusinessName</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="businessName" placeholder="Enter BusinessName"
+                  [(ngModel)]="editUserData.businessName" required minlength="1" maxlength="50"
+                  [class.error]="businessName.invalid" name="businessName" #businessName="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    BusinessName is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="businessTelephone" class="col-sm-12 col-form-label">BusinessTelephone</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="businessTelephone" placeholder="Enter BusinessTelephone"
+                  [(ngModel)]="editUserData.mobileTelephone" required minlength="1" maxlength="50"
+                  [class.error]="businessTelephone.invalid" name="businessTelephone" #businessTelephone="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    BusinessTelephone is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="businessFax" class="col-sm-12 col-form-label">BusinessFax</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="businessFax" placeholder="Enter BusinessFax"
+                  [(ngModel)]="editUserData.businessFax" required minlength="1" maxlength="50"
+                  [class.error]="businessFax.invalid" name="businessFax" #businessFax="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    BusinessFax is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="address" class="col-sm-12 col-form-label">Address</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="address" placeholder="Enter Address"
+                  [(ngModel)]="editUserData.address" required minlength="1" maxlength="50"
+                  [class.error]="address.invalid" name="address" #address="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    Address is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="city" class="col-sm-12 col-form-label">City</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="city" placeholder="Enter City" [(ngModel)]="editUserData.city"
+                  required minlength="1" maxlength="50" [class.error]="city.invalid" name="city" #city="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    City is required.
+                  </div>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="state" class="col-sm-12 col-form-label">State</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="state" placeholder="Enter State"
+                  [(ngModel)]="editUserData.state" required minlength="1" maxlength="50" [class.error]="state.invalid"
+                  name="state" #state="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    State is required.
+                  </div>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="zipCode" class="col-sm-12 col-form-label">ZipCode</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="zipCode" placeholder="Enter ZipCode"
+                  [(ngModel)]="editUserData.zipCode" required minlength="1" maxlength="50" [class.error]="zipCode.invalid"
+                  name="zipCode" #zipCode="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    ZipCode is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="mobileTelephone" class="col-sm-12 col-form-label">MobileTelephone</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="mobileTelephone" placeholder="Enter MobileTelephone"
+                  [(ngModel)]="editUserData.mobileTelephone" required minlength="1" maxlength="50"
+                  [class.error]="mobileTelephone.invalid" name="mobileTelephone" #mobileTelephone="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    MobileTelephone is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="email" class="col-sm-12 col-form-label">Email
+              </label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="email" placeholder="Enter Email"
+                  [(ngModel)]="editUserData.email" required minlength="1" maxlength="50" [class.error]="email.invalid"
+                  name="email" #email="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    Email is required.
+                  </div>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="bmployerName" class="col-sm-12 col-form-label">EmployerName</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="bmployerName" placeholder="Enter EmployerName"
+                  [(ngModel)]="editUserData.employerName" required minlength="1" maxlength="50"
+                  [class.error]="bmployerName.invalid" name="bmployerName" #bmployerName="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    EmployerName is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="licenseNumber" class="col-sm-12 col-form-label">LicenseNumber</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="licenseNumber" placeholder="Enter LicenseNumber"
+                  [(ngModel)]="editUserData.licenseNumber" required minlength="1" maxlength="50"
+                  [class.error]="licenseNumber.invalid" name="licenseNumber" #licenseNumber="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    LicenseNumber is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="password" class="col-sm-12 col-form-label">Password</label>
+              <div class="col-sm-12">
+                <input type="password" class="form-control" id="password" placeholder="Enter Password"
+                  [(ngModel)]="editUserData.password" required minlength="1" maxlength="50"
+                  [class.error]="password.invalid" name="password" #password="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                    Password is required.
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputState" class="col-sm-12 col-form-label">Role</label>
+              <div class=" col-sm-12">
+                <select id="inputState" name="role" class="form-control" placeholder="Choose..." required [(ngModel)]="editUserData.roleId">
+                  <option  value="" disabled selected>Select one Role... </option>
+                  <option *ngFor="let rolesid of roles" [value]="rolesid" >{{rolesid}}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
+                  Role is required.
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="submit(userForm)">Go</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

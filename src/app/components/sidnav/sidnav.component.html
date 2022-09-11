@@ -1,0 +1,23 @@
+<div class="{{sideNavFlag ? ' main-sidenav-function' : 'main-sidenav-function collapse-main-section'}}">
+    <div class="top-wrapper">
+        <div class="navbar-wrapper">
+            <div class="list-wrapper pointer">
+                <div class="dashboard-icon" [routerLink]="['']"></div>
+                <div class="navbar-text pointer"  *ngIf="sideNavFlag">Dashboard</div>
+            </div>
+            <div class="list-wrapper pointer" [routerLink]="['/user']">
+                <div class="users-icon"></div>
+                <div class="navbar-text pointer"  *ngIf="sideNavFlag">Users</div>
+            </div>
+            <div class="list-wrapper pointer" [routerLink]="['/report']">
+                <div class="reports-icon"></div>
+                <div class="navbar-text pointer"  *ngIf="sideNavFlag">Reports</div>
+            </div>
+        </div>
+    </div>
+    <div class="{{sideNavFlag ? ' bottom-wrapper pointer' : 'bottom-wrapper collapse-bottom-wrapper pointer'}}" (click)="logout()">
+        <div class="logout-icon"></div>
+        <div class="logout-text" *ngIf="sideNavFlag">Log Out</div>
+    </div>
+</div>
+

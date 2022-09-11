@@ -1,0 +1,12 @@
+<div *ngIf="isShowHeader">
+    <app-header (newsideNavFlag)="sideNavFlag($event)"></app-header>
+    <app-sidnav [events]="eventsSubject.asObservable()"></app-sidnav>
+</div>
+
+<div *ngIf="isShowHeader" class="{{isSideNavOpen ? 'dashboard-section ': 'dashboard-section collapseNav'}}">
+    <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="!isShowHeader">
+    <router-outlet></router-outlet>
+</div>
