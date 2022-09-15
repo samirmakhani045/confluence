@@ -8,7 +8,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './components/header/header.component';
 import { SidnavComponent } from './components/sidnav/sidnav.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ReportComponent } from './components/report/report/report.component';
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
@@ -20,6 +19,7 @@ import { RoleService } from './services/role.service';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReportComponent } from './components/report/report.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SidnavComponent,
     DashboardComponent,
     UserComponent,
-    ReportComponent,
-    EditUserComponent
+    EditUserComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

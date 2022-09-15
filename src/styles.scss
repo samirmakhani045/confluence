@@ -28192,6 +28192,9 @@ a.badge-purple:focus {
 .checkbox.to-do input[type=checkbox]:checked+label {
     text-decoration: line-through
 }
+.error{
+    border-color: red !important;
+}
 
 .radio {
     min-height: auto;
