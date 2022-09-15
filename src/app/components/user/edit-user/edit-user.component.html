@@ -6,24 +6,24 @@
         <div class="col-md-12">
           <form #userForm="ngForm" >
             <div class="form-group row">
-              <label for="firstName" class="col-sm-12 col-form-label">FirstName</label>
+              <label for="firstName" class="col-sm-12 col-form-label">First Name</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" id="firstName" placeholder="Enter FirstName"
                   [(ngModel)]="editUserData.firstName" required minlength="1" maxlength="50"
                   [class.error]="firstName.invalid && isFormSubmitted" name="firstName" #firstName="ngModel" required required>
                   <div class="invalid-feedback" *ngIf="firstName.invalid && isFormSubmitted">
-                    FirstName is required.
+                    First Name is required.
                   </div>
               </div>
             </div>
             <div class="form-group row">
-              <label for="lastName" class="col-sm-12 col-form-label">LastName</label>
+              <label for="lastName" class="col-sm-12 col-form-label">Last Name</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" id="lastName" placeholder="Enter LastName"
                   [(ngModel)]="editUserData.lastName" required minlength="1" maxlength="50"
                   [class.error]="lastName.invalid && isFormSubmitted" name="lastName" #lastName="ngModel" required>
                   <div class="invalid-feedback" *ngIf="lastName.invalid && isFormSubmitted">
-                    LastName is required.
+                    Last Name is required.
                   </div>
               </div>
             </div>
@@ -39,35 +39,35 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="businessName" class="col-sm-12 col-form-label">BusinessName</label>
+              <label for="businessName" class="col-sm-12 col-form-label">Business Name</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" id="businessName" placeholder="Enter BusinessName"
                   [(ngModel)]="editUserData.businessName" required minlength="1" maxlength="50"
                   [class.error]="businessName.invalid && isFormSubmitted" name="businessName" #businessName="ngModel" required>
                   <div class="invalid-feedback" *ngIf="businessName.invalid && isFormSubmitted">
-                    BusinessName is required.
+                    Business Name is required.
                   </div>
               </div>
             </div>
             <div class="form-group row">
-              <label for="businessTelephone" class="col-sm-12 col-form-label">BusinessTelephone</label>
+              <label for="businessTelephone" class="col-sm-12 col-form-label">Business Telephone</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" id="businessTelephone" placeholder="Enter BusinessTelephone"
                   [(ngModel)]="editUserData.businessTelephone" required minlength="1" maxlength="50"
                   [class.error]="businessTelephone.invalid && isFormSubmitted" name="businessTelephone" #businessTelephone="ngModel" required>
                   <div class="invalid-feedback" *ngIf="businessTelephone.invalid && isFormSubmitted">
-                    BusinessTelephone is required.
+                    Business Telephone is required.
                   </div>
               </div>
             </div>
             <div class="form-group row">
-              <label for="businessFax" class="col-sm-12 col-form-label">BusinessFax</label>
+              <label for="businessFax" class="col-sm-12 col-form-label">Business Fax</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" id="businessFax" placeholder="Enter BusinessFax"
                   [(ngModel)]="editUserData.businessFax" required minlength="1" maxlength="50"
                   [class.error]="businessFax.invalid && isFormSubmitted" name="businessFax" #businessFax="ngModel" required>
                   <div class="invalid-feedback" *ngIf="businessFax.invalid && isFormSubmitted">
-                    BusinessFax is required.
+                    Business Fax is required.
                   </div>
               </div>
             </div>
@@ -106,24 +106,24 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="zipCode" class="col-sm-12 col-form-label">ZipCode</label>
+              <label for="zipCode" class="col-sm-12 col-form-label">Zip Code</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" id="zipCode" placeholder="Enter ZipCode"
                   [(ngModel)]="editUserData.zipCode" required minlength="1" maxlength="50" [class.error]="zipCode.invalid && isFormSubmitted"
                   name="zipCode" #zipCode="ngModel" required>
                   <div class="invalid-feedback" *ngIf="zipCode.invalid && isFormSubmitted">
-                    ZipCode is required.
+                    Zip Code is required.
                   </div>
               </div>
             </div>
             <div class="form-group row">
-              <label for="mobileTelephone" class="col-sm-12 col-form-label">MobileTelephone</label>
+              <label for="mobileTelephone" class="col-sm-12 col-form-label">Mobile/Telephone</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" id="mobileTelephone" placeholder="Enter MobileTelephone"
                   [(ngModel)]="editUserData.mobileTelephone" required minlength="1" maxlength="50"
                   [class.error]="mobileTelephone.invalid && isFormSubmitted" name="mobileTelephone" #mobileTelephone="ngModel" required>
                   <div class="invalid-feedback" *ngIf="mobileTelephone.invalid && isFormSubmitted">
-                    MobileTelephone is required.
+                    Mobile/Telephone is required.
                   </div>
               </div>
             </div>
@@ -141,24 +141,24 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="bmployerName" class="col-sm-12 col-form-label">EmployerName</label>
+              <label for="bmployerName" class="col-sm-12 col-form-label">Employer Name</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" id="bmployerName" placeholder="Enter EmployerName"
                   [(ngModel)]="editUserData.employerName" required minlength="1" maxlength="50"
                   [class.error]="bmployerName.invalid && isFormSubmitted" name="bmployerName" #bmployerName="ngModel" required>
                   <div class="invalid-feedback" *ngIf="bmployerName.invalid && isFormSubmitted">
-                    EmployerName is required.
+                    Employer Name is required.
                   </div>
               </div>
             </div>
             <div class="form-group row">
-              <label for="licenseNumber" class="col-sm-12 col-form-label">LicenseNumber</label>
+              <label for="licenseNumber" class="col-sm-12 col-form-label">License Number</label>
               <div class="col-sm-12">
                 <input type="text" class="form-control" id="licenseNumber" placeholder="Enter LicenseNumber"
                   [(ngModel)]="editUserData.licenseNumber" required minlength="1" maxlength="50"
                   [class.error]="licenseNumber.invalid && isFormSubmitted" name="licenseNumber" #licenseNumber="ngModel" required>
                   <div class="invalid-feedback" *ngIf="licenseNumber.invalid && isFormSubmitted">
-                    LicenseNumber is required.
+                    License Number is required.
                   </div>
               </div>
             </div>
@@ -186,7 +186,16 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary" (click)="submit(userForm)">Go</button>
+            <div class="row">
+              <div class="d-flex gap-3 col-sm-12 ">
+                <div>
+                  <button type="submit" class="btn btn-primary" (click)="Back()">Back</button>
+                </div>
+                <div>
+                  <button type="submit" class="btn btn-primary" (click)="submit(userForm)">Save</button>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>

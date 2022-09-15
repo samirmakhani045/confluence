@@ -1627,7 +1627,8 @@ pre code {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #212529
+    color: #212529;
+
 }
 
 .table th,
@@ -1662,9 +1663,11 @@ pre code {
 
 .table-bordered thead th,
 .table-bordered thead td {
-    border-bottom-width: 2px
+    border-bottom-width: 0px !important
 }
-
+.table > :not(caption) > * > * {
+    border-bottom-width: 0px !important;
+}
 .table-borderless th,
 .table-borderless td,
 .table-borderless thead th,
@@ -28192,9 +28195,7 @@ a.badge-purple:focus {
 .checkbox.to-do input[type=checkbox]:checked+label {
     text-decoration: line-through
 }
-.error{
-    border-color: red !important;
-}
+
 
 .radio {
     min-height: auto;
@@ -29376,3 +29377,5 @@ div.is-invalid {
     font-size: 0.875em;
     color: #dc3545;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

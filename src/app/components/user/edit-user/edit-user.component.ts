@@ -58,6 +58,10 @@ export class EditUserComponent implements OnInit {
     this.editUserData = data.model;
   }
 
+  Back(){
+    this.router.navigate(['user']);
+  }
+
   async submit(form: any) {
     this.isFormSubmitted = true;
     if (form.valid) {

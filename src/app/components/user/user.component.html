@@ -9,7 +9,7 @@
                     <div class="btn btn-primary" (click)="addUserData()">Add User</div>
                 </div>
             </div>
-            
+
             <div class="m-t-25">
                 <div class="table-responsive">
                     <table class="table">
@@ -24,11 +24,33 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of userdata">
-                                <td><span *ngIf="item.firstName">{{ item.firstName }}</span><span *ngIf="!item.firstName">-</span></td>
-                                <td><span *ngIf="item.lastName">{{ item.lastName }}</span><span *ngIf="!item.lastName"> - </span></td>
-                                <td><span >{{ item.role }}</span></td>
-                                <td><span *ngIf="item.email">{{ item.email }}</span><span *ngIf="!item.email"> - </span></td>
-                                <td (click)="editUserData(item.id)" class="pointer"><i class='fa fa-edit'></i></td>
+                                <td><span *ngIf="item.firstName">{{ item.firstName }}</span><span
+                                        *ngIf="!item.firstName">-</span></td>
+                                <td><span *ngIf="item.lastName">{{ item.lastName }}</span><span *ngIf="!item.lastName">
+                                        - </span></td>
+                                <td><span>{{ item.role }}</span></td>
+                                <td><span *ngIf="item.email">{{ item.email }}</span><span *ngIf="!item.email"> - </span>
+                                </td>
+                                <td class="d-flex gap-5">
+                                    <div (click)="editUserData(item.id)" class="pointer">
+                                        <i class='fa fa-edit'></i>
+                                    </div>
+                                    <div class="pointer" (click)="deleteUserData(item.id)">
+                                        <i class="fa fa-trash"></i>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-1">
+                                        <div><span>Deactive</span></div>
+
+                                        <div class="form-check form-switch">
+
+                                            <input mdbCheckbox class="form-check-input" type="checkbox" [checked]="true"
+                                                id="flexSwitchCheckDefault" />
+                                            <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

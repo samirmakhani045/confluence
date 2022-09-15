@@ -1,0 +1,191 @@
+<div class="main-content">
+    <h3>Add User</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form #userForm="ngForm">
+                        <div class="form-group row">
+                            <label for="houseNo" class="col-sm-12 col-form-label">HouseNo</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="houseNo" placeholder="Enter houseNo"
+                                    [(ngModel)]="reportData.houseNo" required minlength="1" maxlength="50"
+                                    [class.error]="houseNo.invalid && isFormSubmitted" name="houseNo"
+                                    #houseNo="ngModel" required required>
+                                <div class="invalid-feedback" *ngIf="houseNo.invalid && isFormSubmitted">
+                                    houseNo is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="streetName" class="col-sm-12 col-form-label">StreetName</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="streetName" placeholder="Enter streetName"
+                                    [(ngModel)]="reportData.streetName" required minlength="1" maxlength="50"
+                                    [class.error]="streetName.invalid && isFormSubmitted" name="streetName"
+                                    #streetName="ngModel" required>
+                                <div class="invalid-feedback" *ngIf="streetName.invalid && isFormSubmitted">
+                                    streetName is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ownerName" class="col-sm-12 col-form-label">OwnerName</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="ownerName"
+                                    placeholder="Enter ownerName" [(ngModel)]="reportData.ownerName" required
+                                    minlength="1" maxlength="50"
+                                    [class.error]="ownerName.invalid && isFormSubmitted" name="ownerName"
+                                    #ownerName="ngModel" required>
+                                <div class="invalid-feedback" *ngIf="ownerName.invalid && isFormSubmitted">
+                                    ownerName is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="block" class="col-sm-12 col-form-label">Block</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="block"
+                                    placeholder="Enter block" [(ngModel)]="reportData.block" required
+                                    minlength="1" maxlength="50" [class.error]="block.invalid && isFormSubmitted"
+                                    name="block" #block="ngModel" required>
+                                <div class="invalid-feedback" *ngIf="block.invalid && isFormSubmitted">
+                                    block is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lot" class="col-sm-12 col-form-label">Lot</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="lot"
+                                    placeholder="Enter lot" [(ngModel)]="reportData.lot"
+                                    required minlength="1" maxlength="50"
+                                    [class.error]="lot.invalid && isFormSubmitted"
+                                    name="lot" #lot="ngModel" required>
+                                <div class="invalid-feedback" *ngIf="lot.invalid && isFormSubmitted">
+                                    Lot is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="bin" class="col-sm-12 col-form-label">Bin</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="bin" placeholder="Enter bin"
+                                    [(ngModel)]="reportData.bin" required minlength="1" maxlength="50"
+                                    [class.error]="bin.invalid && isFormSubmitted" name="bin"
+                                    #bin="ngModel" required>
+                                <div class="invalid-feedback" *ngIf="bin.invalid && isFormSubmitted">
+                                    Bin is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="communityBoardNo" class="col-sm-12 col-form-label">CommunityBoardNo</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="communityBoardNo" placeholder="Enter communityBoardNo"
+                                    [(ngModel)]="reportData.communityBoardNo" required minlength="1" maxlength="50"
+                                    [class.error]="communityBoardNo.invalid && isFormSubmitted" name="communityBoardNo" #communityBoardNo="ngModel"
+                                    required>
+                                <div class="invalid-feedback" *ngIf="communityBoardNo.invalid && isFormSubmitted">
+                                    CommunityBoardNo is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="numberOfStories" class="col-sm-12 col-form-label">NumberOfStories</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="numberOfStories" placeholder="Enter numberOfStories"
+                                    [(ngModel)]="reportData.numberOfStories" required minlength="1" maxlength="50"
+                                    [class.error]="numberOfStories.invalid && isFormSubmitted" name="numberOfStories" #numberOfStories="ngModel"
+                                    required>
+                                <div class="invalid-feedback" *ngIf="numberOfStories.invalid && isFormSubmitted">
+                                    NumberOfStories is required.
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="numberOfMeters" class="col-sm-12 col-form-label">NumberOfMeters</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="numberOfMeters" placeholder="Enter numberOfMeters"
+                                    [(ngModel)]="reportData.numberOfMeters" required minlength="1" maxlength="50"
+                                    [class.error]="numberOfMeters.invalid && isFormSubmitted" name="numberOfMeters" #numberOfMeters="ngModel"
+                                    required>
+                                <div class="invalid-feedback" *ngIf="numberOfMeters.invalid && isFormSubmitted">
+                                    NumberOfMeters is required.
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="activeMeters" class="col-sm-12 col-form-label">ActiveMeters</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="activeMeters" placeholder="Enter activeMeters"
+                                    [(ngModel)]="reportData.activeMeters" required minlength="1" maxlength="50"
+                                    [class.error]="activeMeters.invalid && isFormSubmitted" name="activeMeters" #activeMeters="ngModel"
+                                    required>
+                                <div class="invalid-feedback" *ngIf="activeMeters.invalid && isFormSubmitted">
+                                    ActiveMeters is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="additionalComments" class="col-sm-12 col-form-label">AdditionalComments</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="additionalComments"
+                                    placeholder="Enter additionalComments" [(ngModel)]="reportData.additionalComments"
+                                    required minlength="1" maxlength="50"
+                                    [class.error]="additionalComments.invalid && isFormSubmitted" name="additionalComments"
+                                    #additionalComments="ngModel" required>
+                                <div class="invalid-feedback" *ngIf="additionalComments.invalid && isFormSubmitted">
+                                    AdditionalComments is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="additionalCommentsImageName" class="col-sm-12 col-form-label">AdditionalCommentsImageName
+                            </label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="additionalCommentsImageName" placeholder="Enter additionalCommentsImageName"
+                                    [(ngModel)]="reportData.additionalCommentsImageName " required minlength="1" maxlength="50"
+                                    [class.error]="additionalCommentsImageName.invalid && isFormSubmitted" name="additionalCommentsImageName" #additionalCommentsImageName="ngModel"
+                                    required>
+                                <div class="invalid-feedback" *ngIf="additionalCommentsImageName.invalid && isFormSubmitted">
+                                    AdditionalCommentsImageName is required.
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="dateOfInitialInspection" class="col-sm-12 col-form-label">DateOfInitialInspection</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="dateOfInitialInspection"
+                                    placeholder="Enter EmployerName" [(ngModel)]="reportData.employerName" required
+                                    minlength="1" maxlength="50" [class.error]="dateOfInitialInspection.invalid && isFormSubmitted"
+                                    name="dateOfInitialInspection" #dateOfInitialInspection="ngModel" required>
+                                <div class="invalid-feedback" *ngIf="dateOfInitialInspection.invalid && isFormSubmitted">
+                                    DateOfInitialInspection is required.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group row">
+                            <label for="inputState" class="col-sm-12 col-form-label">Role</label>
+                            <div class=" col-sm-12">
+                                <select id="inputState" name="role" class="form-control" placeholder="Choose..."
+                                    required [(ngModel)]="reportData.roleId"
+                                    [class.error]="!reportData.roleId && isFormSubmitted">
+                                    <option value="" disabled selected>Select one Role... </option>
+                                    <option *ngFor="let item of roles" [value]="item.id">{{item.roleName}}</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="!reportData.roleId && isFormSubmitted">
+                                    Role is required.
+                                </div>
+                            </div>
+                        </div> -->
+                        <button type="submit" class="btn btn-primary" (click)="submit(userForm)">Go</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

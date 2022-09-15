@@ -3,6 +3,7 @@ import { UserService } from './../../services/user.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -12,6 +13,8 @@ export class UserComponent implements OnInit {
   roles: any = [];
   userdata:any;
   roleid:any = '';
+  isctive = false;
+  isDeactive = false;
 
   constructor(
     private router: Router,
@@ -37,6 +40,15 @@ export class UserComponent implements OnInit {
 
   editUserData(value:any){
     this.router.navigate([`user/${value}`])
+  }
+
+ async deleteUserData(id:any){
+  if(confirm("Are you sure to delete user")) {
+    console.log("Implement delete functionality here");
+  }
+  let res = await lastValueFrom(this.userService.deleteUser(id)); 
+  this.getAllUser();
+  debugger
   }
 
    async getAllUser(){

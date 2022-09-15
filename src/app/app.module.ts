@@ -20,6 +20,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReportComponent } from './components/report/report.component';
+import { EditReportComponent } from './components/report/edit-report/edit-report/edit-report.component';
+import { DialogComponent } from './components/dialog/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ReportComponent } from './components/report/report.component';
     DashboardComponent,
     UserComponent,
     EditUserComponent,
-    ReportComponent
+    ReportComponent,
+    EditReportComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
