@@ -1,8 +1,10 @@
-import { NotificationService } from './../../services/notification.service';
+import { MatDialog } from '@angular/material/dialog';
+ import { NotificationService } from './../../services/notification.service';
 import { UserService } from './../../services/user.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user',
@@ -11,62 +13,82 @@ import { lastValueFrom } from 'rxjs';
 })
 export class UserComponent implements OnInit {
   roles: any = [];
-  userdata:any;
-  roleid:any = '';
-  isctive = false;
-  isDeactive = false;
+  userdata: any;
+  roleid: any = '';
 
+  queryData = {
+    firstName: '',
+    lastName: '',
+    businessName: '',
+    roleId: ''
+  }
   constructor(
     private router: Router,
-    private userService : UserService,
-    private notifyService : NotificationService
+    private userService: UserService,
+    private notifyService: NotificationService,
+    public dialog: MatDialog
   ) { }
 
-  ngOnInit(): void {
-    this.getAllRole();  
+  async ngOnInit() {
+    await this.getAllRole();
     this.getAllUser();
-   
   }
 
   async getAllRole() {
     const data: any = await lastValueFrom(this.userService.getAllRole());
     if (data.success === true) {
-      this.roles  = data.model;
+      this.roles = data.model;
     } else {
       this.notifyService.showError(data.message)
     }
-    
+
   }
 
-  editUserData(value:any){
+  editUserData(value: any) {
     this.router.navigate([`user/${value}`])
   }
 
- async deleteUserData(id:any){
-  if(confirm("Are you sure to delete user")) {
-    console.log("Implement delete functionality here");
-  }
-  let res = await lastValueFrom(this.userService.deleteUser(id)); 
-  this.getAllUser();
-  debugger
+  async deleteUserData(id: any) {
+    Swal.fire({
+      title: 'Are you sure want to remove?',
+      text: '',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then(async (result) => {
+      if (result.value) {
+        await lastValueFrom(this.userService.deleteUser(id));
+        this.getAllUser();
+      }
+    })
   }
 
-   async getAllUser(){
-    this.userdata = await lastValueFrom(this.userService.getAllUser()); 
-    this.userdata = this.userdata.model;
+  async getAllUser() {
+    let userData : any = {}
+    if (this.queryData.firstName || this.queryData.lastName || this.queryData.businessName || this.queryData.roleId) {
+      userData = await lastValueFrom(this.userService.getUserFilterData(this.queryData));
+    } else {
+      userData = await lastValueFrom(this.userService.getAllUser());
+    }
+    this.userdata = userData.model;
     for (let index = 0; index < this.userdata.length; index++) {
       const element = this.userdata[index];
-      if(element.roleId){
-        const role = this.roles.find((r : any) => r.id === element.roleId);
+      if (element.roleId) {
+        const role = this.roles.find((r: any) => r.id === element.roleId);
         if (role) {
           this.userdata[index].role = role.roleName
-        }    
+        }
       }
     }
-    
   }
 
-
+  async changeActive(item: any) {
+    let body = new FormData();
+    body.append('UserIds', item.id);
+    body.append('isActive', JSON.stringify(!item.isActive));
+    await lastValueFrom(this.userService.updateUsersEnableDisable(body))
+  }
 
   addUserData() {
     this.router.navigate(['user/add'])

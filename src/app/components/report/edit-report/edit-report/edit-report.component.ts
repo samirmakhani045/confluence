@@ -49,7 +49,6 @@ export class EditReportComponent implements OnInit {
 
   submit(form: any) {
     this.isFormSubmitted = true;
-    debugger
   }
 
 }

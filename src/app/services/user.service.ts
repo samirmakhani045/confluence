@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -25,7 +26,7 @@ export class UserService {
   }
 
 
-  getById(id : string) {
+  getById(id: string) {
     return this.apiSevice.get(environment.api_url, `Users/${id}`)
   }
 
@@ -39,5 +40,26 @@ export class UserService {
 
   save(data: any) {
     return this.apiSevice.post(environment.api_url, `Users`, data);
+  }
+
+  updateUsersEnableDisable(data: any) {
+    return this.apiSevice.post(environment.api_url, `Users/UpdateUsersEnableDisable`, data);
+  }
+
+  getUserFilterData(data: any) {
+    let params = new HttpParams();
+    if (data.firstName) {
+      params = params.append("FirstName", data.firstName);
+    }
+    if (data.lastName) {
+      params = params.append("LastName", data.lastName);
+    }
+    if (data.businessName) {
+      params = params.append("BusinessName", data.businessName);
+    }
+    if (data.roleId) {
+      params = params.append("RoleId", data.roleId);
+    }
+    return this.apiSevice.get(environment.api_url, `Users/GetUserFilterData`, params)
   }
 }

@@ -28,7 +28,7 @@ export class ApiService {
 
 
 
-  get<T>(baseUrl: string, resource: string): Observable<T> {
+  get<T>(baseUrl: string, resource: string, params = {}): Observable<T> {
     this.baseUrl = baseUrl;
     let urlString: string;
     let userInfo: any = localStorage.getItem('userInfo');
@@ -47,7 +47,7 @@ export class ApiService {
 
     return this.http.get<T>(
       urlString,
-      { headers: new HttpHeaders(headers) }
+      { params: params, headers: new HttpHeaders(headers) }
     );
   }
 

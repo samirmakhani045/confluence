@@ -16,12 +16,12 @@ import { FormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
 import { EditUserComponent } from './components/user/edit-user/edit-user.component';
 import { RoleService } from './services/role.service';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReportComponent } from './components/report/report.component';
 import { EditReportComponent } from './components/report/edit-report/edit-report/edit-report.component';
-import { DialogComponent } from './components/dialog/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,6 @@ import { DialogComponent } from './components/dialog/dialog/dialog.component';
     EditUserComponent,
     ReportComponent,
     EditReportComponent,
-    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +43,8 @@ import { DialogComponent } from './components/dialog/dialog/dialog.component';
     FormsModule,
     NgApexchartsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatDialogModule
   ],
   providers: [
     ApiService,
