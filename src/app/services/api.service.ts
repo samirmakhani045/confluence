@@ -9,11 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   private baseUrl = '';
+  private token: any = '';
   constructor(
     private http: HttpClient
   ) { }
 
-  private truncateEndSlash(baseUrl:any) {
+  private truncateEndSlash(baseUrl: any) {
     if (baseUrl.endsWith('/')) {
       baseUrl = baseUrl.slice(0, -1);
     }
@@ -25,76 +26,97 @@ export class ApiService {
   }
 
 
+
+
   get<T>(baseUrl: string, resource: string): Observable<T> {
     this.baseUrl = baseUrl;
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials':'true',
-      'Access-Control-Allow-Methods': '*'
+    let urlString: string;
+    let userInfo: any = localStorage.getItem('userInfo');
+    if (userInfo) {
+      userInfo = JSON.parse(userInfo)
+      this.token = userInfo.token;
     }
-   
-    return this.http.get<T>(
-      `${this.truncateEndSlash(this.baseUrl)}/${resource}`,
-      {headers: new HttpHeaders(headers)}
-    );
-  }
-
-  post<T>(baseUrl: string, resource: string, param: any): Observable<T> {    
-    this.baseUrl = baseUrl;
-    let urlString : string;
-    if(resource.startsWith('http'))
-    {
+    if (resource.startsWith('http')) {
       urlString = resource;
-    }
-    else{
+    } else {
       urlString = `${this.truncateEndSlash(this.baseUrl)}/${resource}`
     }
     const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials':'true',
-      'Access-Control-Allow-Methods': '*'
+      'Authorization': `Bearer ${this.token}`
     }
 
-    const body = this.getBody(param);
+    return this.http.get<T>(
+      urlString,
+      { headers: new HttpHeaders(headers) }
+    );
+  }
+
+  post<T>(baseUrl: string, resource: string, param: any): Observable<T> {
+    this.baseUrl = baseUrl;
+    let urlString: string;
+    let userInfo: any = localStorage.getItem('userInfo');
+    if (userInfo) {
+      userInfo = JSON.parse(userInfo)
+      this.token = userInfo.token;
+    }
+    if (resource.startsWith('http')) {
+      urlString = resource;
+    } else {
+      urlString = `${this.truncateEndSlash(this.baseUrl)}/${resource}`
+    }
+    const headers = {
+      'Authorization': `Bearer ${this.token}`
+    }
+
     return this.http.post<T>(
       urlString,
-      body,
+      param,
       { headers: new HttpHeaders(headers) }
     );
   }
 
   put<T>(baseUrl: string, resource: string, param: any): Observable<T> {
     this.baseUrl = baseUrl;
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials':'true',
-      'Access-Control-Allow-Methods': '*'
+    let urlString: string;
+    let userInfo: any = localStorage.getItem('userInfo');
+    if (userInfo) {
+      userInfo = JSON.parse(userInfo)
+      this.token = userInfo.token;
     }
-    const body = this.getBody(param);
+    if (resource.startsWith('http')) {
+      urlString = resource;
+    } else {
+      urlString = `${this.truncateEndSlash(this.baseUrl)}/${resource}`
+    }
+    const headers = {
+      'Authorization': `Bearer ${this.token}`
+    }
     return this.http.put<T>(
-      `${this.truncateEndSlash(this.baseUrl)}/${resource}`,
-      body,
+      urlString,
+      param,
       { headers: new HttpHeaders(headers) }
     );
   }
 
   delete<T>(baseUrl: string, resource: string): Observable<T> {
     this.baseUrl = baseUrl;
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials':'true',
-      'Access-Control-Allow-Methods': '*'
+    let urlString: string;
+    let userInfo: any = localStorage.getItem('userInfo');
+    if (userInfo) {
+      userInfo = JSON.parse(userInfo)
+      this.token = userInfo.token;
     }
-
-    const options = {
-      headers: headers
+    if (resource.startsWith('http')) {
+      urlString = resource;
+    } else {
+      urlString = `${this.truncateEndSlash(this.baseUrl)}/${resource}`
+    }
+    const headers = {
+      'Authorization': `Bearer ${this.token}`
     }
     return this.http.delete<T>(
-      `${this.truncateEndSlash(this.baseUrl)}/${resource}`, options
+      urlString,
+      { headers: new HttpHeaders(headers) }
     );
   }
 

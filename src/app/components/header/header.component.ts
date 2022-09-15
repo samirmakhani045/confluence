@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   @Output() newsideNavFlag = new EventEmitter<boolean>();
-  
+  @Input() userInfo:any; 
+
   isSideNvOpen = true;
 
   constructor(

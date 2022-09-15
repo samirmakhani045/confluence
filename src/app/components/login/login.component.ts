@@ -1,3 +1,4 @@
+import { NotificationService } from './../../services/notification.service';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private notifyService: NotificationService
   ) { }
 
 
@@ -67,8 +69,18 @@ export class LoginComponent implements OnInit {
       //   "errorCode": null,
       //   "data": null
       // }
-      this.authService.setUserInfo(data.model);
-      this.router.navigate([''])
+      if(data.model === null){
+        this.router.navigate(['login']);
+        this.notifyService.showError(data.message)
+      }else{                       
+        this.notifyService.showSuccess("login successful.");    
+        setTimeout(()=>{                           // <<<---using ()=> syntax
+          this.authService.setUserInfo(data.model);
+          this.router.navigate(['']);
+      }, 0);
+       
+      }
+
     }
 
   }

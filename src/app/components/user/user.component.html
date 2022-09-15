@@ -3,11 +3,10 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h4>Basic Usage</h4>
-                    <p>Using the most basic table markup, here’s how <code>.table</code>-based tables look in Bootstrap.</p>
+                    <h4>Users</h4>
                 </div>
                 <div>
-                    <div class="btn btn-primary" (click)="addUserData()">Add UserData</div>
+                    <div class="btn btn-primary" (click)="addUserData()">Add User</div>
                 </div>
             </div>
             
@@ -16,30 +15,20 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">First</th>
                                 <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
+                            <tr *ngFor="let item of userdata">
+                                <td><span *ngIf="item.firstName">{{ item.firstName }}</span><span *ngIf="!item.firstName">-</span></td>
+                                <td><span *ngIf="item.lastName">{{ item.lastName }}</span><span *ngIf="!item.lastName"> - </span></td>
+                                <td><span >{{ item.role }}</span></td>
+                                <td><span *ngIf="item.email">{{ item.email }}</span><span *ngIf="!item.email"> - </span></td>
+                                <td (click)="editUserData(item.id)" class="pointer"><i class='fa fa-edit'></i></td>
                             </tr>
                         </tbody>
                     </table>

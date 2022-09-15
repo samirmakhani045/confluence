@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -11,9 +12,11 @@ export class AppComponent implements OnInit {
   title = 'confluence';
   isShowHeader = true;
   isSideNavOpen = true;
+  userData : any
   eventsSubject: Subject<boolean> = new Subject<boolean>();
   constructor(
-    router: Router
+    router: Router,
+    private authService : AuthService
   ) {
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
@@ -26,7 +29,12 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserData();
+  }
+  getUserData(){
+    this.userData = this.authService.getUserInfo();
+  }
 
   sideNavFlag(newflag: boolean) {
     this.isSideNavOpen = newflag;

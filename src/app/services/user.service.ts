@@ -16,9 +16,14 @@ export class UserService {
     return this.apiSevice.post(environment.api_url, 'Users/Login', data)
   }
 
+  getAllRole() {
+    return this.apiSevice.get(environment.api_url, 'Role/All')
+  }
+
   getAllUser() {
     return this.apiSevice.get(environment.api_url, 'Users/All')
   }
+
 
   getById(id : string) {
     return this.apiSevice.get(environment.api_url, `Users/${id}`)
