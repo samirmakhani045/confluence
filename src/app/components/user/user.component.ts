@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
+import { ObservableService } from 'src/app/services/observable.service';
 
 @Component({
   selector: 'app-user',
@@ -15,7 +16,6 @@ export class UserComponent implements OnInit {
   roles: any = [];
   userdata: any;
   roleid: any = '';
-
   queryData = {
     firstName: '',
     lastName: '',
@@ -26,7 +26,8 @@ export class UserComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private notifyService: NotificationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private observableService: ObservableService
   ) { }
 
   async ngOnInit() {

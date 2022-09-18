@@ -1,0 +1,125 @@
+.m-0{
+    margin: 0px;
+}
+.p-0{
+    padding: 0px;
+}
+.search-box{
+    width: auto;
+}
+.search-section{
+    place-content:center;
+    margin-top: -46px;
+}
+.table-responsive table{
+    width: 100% !important;
+}
+ td{
+    padding: 14px 0px;
+    font-size: 16px;
+}
+
+@media only screen 
+    and (max-width: 760px), (min-device-width: 768px) 
+    and (max-device-width: 1024px)  {
+
+		/* Force table to not be like tables anymore */
+		table, thead, tbody, th, td, tr {
+			display: block;
+		}
+
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+    tr {
+      margin: 0 0 1rem 0;
+      font-size: 16px;
+    }
+      
+    tr:nth-child(odd) {
+      background: #e9e5e54a;
+    }
+    
+		td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 45%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            
+		}
+
+		td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 0;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+            padding: 10px 0px;
+		}
+
+		/*
+		Label the data
+    You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+		*/
+		td:nth-of-type(1):before { content: "First Name"; }
+		td:nth-of-type(2):before { content: "Last Name"; }
+		td:nth-of-type(3):before { content: "Role"; }
+		td:nth-of-type(4):before { content: "Email"; }
+		td:nth-of-type(5):before { content: "Business Name"; }
+		td:nth-of-type(6):before { content: "Action"; }
+	}
+@media only screen and (max-width: 767px)   { 
+    .search-section{
+        place-content:center;
+        margin-top: 0px;
+		width: auto;
+    }
+    .main-content{
+        padding: 14px 10px 14px 10px !important;
+    }
+    .search-box{
+        margin-top: 16px;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+	.search-section{
+		width: auto;
+		margin-top: 10px;
+	}
+	.search-box{
+        margin-top: 16px;
+        width: 100%;
+    }
+	.main-content{
+        padding: 14px 10px 14px 10px !important;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1200px){
+	.search-box{
+		margin-top: 16px  !important;
+		width: 50% !important;
+	}
+}
+@media only screen and (min-width: 1200px) and (max-width : 1400px){
+	.search-section{
+		width: auto ;
+		margin-top: 10px;
+	}
+	.search-box{
+		margin-top: 16px !important;
+		width: 50%;
+	}
+}

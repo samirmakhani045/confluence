@@ -3,69 +3,85 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h4>Users</h4>
-                </div>
-                <div class="d-flex gap-3">
-                    <input type="text" class="form-control" id="firstName" [(ngModel)]="queryData.firstName"
-                        (ngModelChange)="getAllUser()" placeholder="Search By First Name" minlength="1" maxlength="50"
-                        name="firstName" #email="ngModel">
-                    <input type="text" class="form-control" id="lastName" [(ngModel)]="queryData.lastName"
-                        (ngModelChange)="getAllUser()" placeholder="Search By Last Name" minlength="1" maxlength="50"
-                        name="lastName" #email="ngModel">
-                    <input type="text" class="form-control" id="businessName" [(ngModel)]="queryData.businessName"
-                        (ngModelChange)="getAllUser()" placeholder="Search By Business Name" minlength="1"
-                        maxlength="50" name="businessName" #email="ngModel">
+                    <h2>Users</h2>
                 </div>
                 <div>
                     <div class="btn btn-primary" (click)="addUserData()">Add User</div>
                 </div>
             </div>
+            <div class="row  search-section">
+                <div class="col-sm-3 search-box">
+                    <input type="text" class="form-control" id="firstName" [(ngModel)]="queryData.firstName"
+                        (ngModelChange)="getAllUser()" placeholder="Search By First Name" minlength="1" maxlength="50"
+                        name="firstName" #email="ngModel">
+                </div>
+                <div class="col-sm-3 search-box">
+                    <input type="text" class="form-control" id="lastName" [(ngModel)]="queryData.lastName"
+                        (ngModelChange)="getAllUser()" placeholder="Search By Last Name" minlength="1" maxlength="50"
+                        name="lastName" #email="ngModel">
+                </div>
+                <div class="col-sm-3 search-box">
+                    <input type="text" class="form-control" id="businessName" [(ngModel)]="queryData.businessName"
+                        (ngModelChange)="getAllUser()" placeholder="Search By Business Name" minlength="1"
+                        maxlength="50" name="businessName" #email="ngModel">
+                </div>
+                <div class="col-sm-3 search-box">
+                    <select id="inputState" name="role" class="form-control" placeholder="Choose..." required
+                        [(ngModel)]="queryData.roleId" (ngModelChange)="getAllUser()">
+                        <option value="" selected>Select one Role... </option>
+                        <option *ngFor="let item of roles" [value]="item.id">{{item.roleName}}</option>
+                    </select>
+                </div>
+            </div>
 
             <div class="m-t-25">
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Business Name</th>
-                                <th scope="col">Action</th>
-                            </tr>
+                    <table role="table">
+                        <thead role="rowgroup">
+                          <tr role="row">
+                            <th role="columnheader">First Name</th>
+                            <th role="columnheader">Last Name</th>
+                            <th role="columnheader">Role</th>
+                            <th role="columnheader">Email</th>
+                            <th role="columnheader">Business Name</th>
+                            <th role="columnheader">Action</th>
+                          </tr>
                         </thead>
-                        <tbody>
-                            <tr *ngFor="let item of userdata">
-                                <td><span *ngIf="item.firstName">{{ item.firstName }}</span><span
-                                        *ngIf="!item.firstName">-</span></td>
-                                <td><span *ngIf="item.lastName">{{ item.lastName }}</span><span *ngIf="!item.lastName">
-                                        - </span></td>
-                                <td><span>{{ item.role }}</span></td>
-                                <td><span *ngIf="item.email">{{ item.email }}</span><span *ngIf="!item.email"> - </span>
-                                <td><span *ngIf="item.businessName">{{ item.businessName }}</span><span *ngIf="!item.businessName"> - </span>
-                                </td>
-                                <td class="d-flex gap-5">
+                        <tbody role="rowgroup">
+                          <tr *ngFor="let item of userdata" role="row">
+                            <td role="cell"><span *ngIf="item.firstName">{{ item.firstName }}</span><span
+                                    *ngIf="!item.firstName">-</span></td>
+                            <td role="cell"><span *ngIf="item.lastName">{{ item.lastName }}</span><span *ngIf="!item.lastName">
+                                    - </span></td>
+                            <td role="cell"><span *ngIf="item.role">{{ item.role }}</span ><span *ngIf="!item.role"> - </span></td>
+                            <td role="cell"><span *ngIf="item.email">{{ item.email }}</span><span *ngIf="!item.email"> - </span>
+                            <td role="cell"><span *ngIf="item.businessName">{{ item.businessName }}</span><span
+                                    *ngIf="!item.businessName"> - </span>
+                            </td>
+                            <td  role="cell">
+                                <div class="d-flex gap-3">
                                     <div (click)="editUserData(item.id)" class="pointer">
                                         <i class='fa fa-edit'></i>
                                     </div>
                                     <div class="pointer" (click)="deleteUserData(item.id)">
                                         <i class="fa fa-trash"></i>
                                     </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex gap-1">
-                                        <div><span>Deactive</span></div>
-                                        <div class="form-check form-switch">
-                                            <input mdbCheckbox class="form-check-input" type="checkbox"
-                                                [checked]="item.isActive" id="flexSwitchCheckDefault"
-                                                (change)="changeActive(item)" />
-                                            <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
-                                        </div>
+                                </div>                
+                            </td>
+                            <td role="cell">
+                                <div class="d-flex gap-1">
+                                    <div><span>Deactive</span></div>
+                                    <div class="form-check form-switch">
+                                        <input mdbCheckbox class="form-check-input" type="checkbox"
+                                            [checked]="item.isActive" id="flexSwitchCheckDefault"
+                                            (change)="changeActive(item)" />
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
-                    </table>
+                      </table>
                 </div>
             </div>
         </div>

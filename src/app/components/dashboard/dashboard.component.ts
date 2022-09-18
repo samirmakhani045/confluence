@@ -1,3 +1,5 @@
+import { ReportService } from './../../services/report.service';
+import { ObservableService } from './../../services/observable.service';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import {
@@ -12,6 +14,7 @@ import {
   ApexNonAxisChartSeries,
   ApexResponsive
 } from "ng-apexcharts";
+import { lastValueFrom } from 'rxjs';
 
 export type PieChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -41,10 +44,14 @@ export class DashboardComponent implements OnInit {
   // chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
   public pieChartOptions: Partial<PieChartOptions> | any;
-
+  isChartFull = true;
   isminwidth :any = "100%";
+  dashboardData:any
 
-  constructor() {
+  constructor(
+    private observableService: ObservableService,
+    private reportService : ReportService
+  ) {
     this.chartOptions = {
       series: [
         {
@@ -96,7 +103,8 @@ export class DashboardComponent implements OnInit {
     this.pieChartOptions = {
       series: [44, 55, 13, 43, 22],
       chart: {
-        type: "pie"
+        type: "donut",
+        height: '300'
       },
       labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
       responsive: [
@@ -120,7 +128,22 @@ export class DashboardComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  
+    this.observableService.selectedSidenav$.subscribe((value) => {
+      this.getDashboardReport();
+      setTimeout(() => {
+        this.isChartFull = value;
+      }, 500)
+    });
+  }
+
+ async getDashboardReport(){
+    let data: any = await lastValueFrom(this.reportService.getDashboardReport());
+    this.dashboardData = data.model;
+    console.log("🚀 ~ file: dashboard.component.ts ~ line 143 ~ DashboardComponent ~ getDashboardReport ~ this.dashboardData", this.dashboardData)
+    
+
   }
 
 }

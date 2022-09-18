@@ -1,37 +1,81 @@
 <div class="main-content">
     <div class="card">
         <div class="card-body">
-            <h4>Basic Usage</h4>
-            <p>Using the most basic table markup, here’s how <code>.table</code>-based tables look in Bootstrap.</p>
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h2>Reports</h2>
+                </div>
+                <div>
+                    <div>
+                        <div class="btn btn-primary" (click)="addReportData()">Add Report</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row  search-section">
+                <div class="col-sm-2 search-box">
+                    <input type="text" class="form-control" id="userID" [(ngModel)]="queryData.userID"
+                        placeholder="Search By User ID" minlength="1" maxlength="50" name="userID">
+                </div>
+                <div class="col-sm-2 search-box">
+                    <input type="text" class="form-control" id="broughID" [(ngModel)]="queryData.broughID"
+                        placeholder="Search By Brough ID" minlength="1" maxlength="50" name="broughID">
+                </div>
+                <div class="col-sm-2 search-box">
+                    <input type="text" class="form-control" id="streetname" [(ngModel)]="queryData.streetname"
+                        placeholder="Search By Street Name" minlength="1" maxlength="50" name="streetname">
+                </div>
+                <div class="col-sm-2 search-box">
+                    <input type="text" class="form-control" id="ownerName" [(ngModel)]="queryData.ownerName"
+                        placeholder="Search By Owner Name" minlength="1" maxlength="50" name="ownerName">
+                </div>
+                <div class="col-sm-2 search-box">
+                    <input type="text" class="form-control" id="dateOfInitialInspection"
+                        [(ngModel)]="queryData.dateOfInitialInspection"
+                        placeholder="Search By Date Of Initial Inspection" minlength="1" maxlength="50"
+                        name="dateOfInitialInspection">
+                </div>
+                <!-- <div class="col-sm-2 search-box">
+                    <input type="text" class="form-control" id="finalizeDate" [(ngModel)]="queryData.finalizeDate"
+                     placeholder="Search By Finalize Date" minlength="1"
+                        maxlength="50" name="finalizeDate">
+                </div> -->
+            </div>
             <div class="m-t-25">
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                    <table role="table">
+                        <thead role="rowgroup">
+                            <tr role="row">
+                                <th role="columnheader">User Id</th>
+                                <th role="columnheader">Brough ID</th>
+                                <th role="columnheader">Street Name</th>
+                                <th role="columnheader">Owner Name</th>
+                                <th role="columnheader"> Date Of Initial Inspection</th>
+                                <th role="columnheader">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
+                        <tbody role="rowgroup">
+                            <tr role="row" *ngFor="let item of this.reportData">
+                                <td role="cell"><span *ngIf="item.userId">{{item.userId}}</span><span
+                                        *ngIf="!item.userId"> - </span></td>
+                                <td role="cell"><span *ngIf="item.boroughId">{{item.boroughId}}</span><span
+                                        *ngIf="!item.boroughId"> - </span></td>
+                                <td role="cell"><span *ngIf="item.streetName">{{item.streetName}}</span><span
+                                        *ngIf="!item.streetName"> - </span></td>
+                                <td role="cell"><span *ngIf="item.ownerName">{{item.ownerName}}</span><span
+                                        *ngIf="!item.ownerName"> - </span></td>
+                                <td role="cell"><span
+                                        *ngIf="item.dateOfInitialInspection">{{item.dateOfInitialInspection}}</span><span
+                                        *ngIf="!item.dateOfInitialInspection"> - </span></td>
+                                <td role="cell">
+                                    <div class="d-flex gap-3">
+                                        <div (click)="editUserData(item.id)" class="pointer">
+                                            <i class='fa fa-edit'></i>
+                                        </div>
+                                        <div class="pointer" (click)="deleteUserData(item.id)">
+                                            <i class="fa fa-trash"></i>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

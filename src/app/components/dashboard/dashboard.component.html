@@ -4,12 +4,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="media align-items-center">
-                        <div class="avatar avatar-icon avatar-lg avatar-blue">
+                        <!-- <div class="avatar avatar-icon avatar-lg avatar-blue">
                             <i class="anticon anticon-dollar"></i>
-                        </div>
+                        </div> -->
                         <div class="m-l-15">
-                            <h2 class="m-b-0">$23,523</h2>
-                            <p class="m-b-0 text-muted">Profit</p>
+                            <h2 class="m-b-0 pending-count">{{dashboardData.pendingReportCount}}</h2>
+                            <p class="m-b-0 text-muted">Pending Reports</p>
                         </div>
                     </div>
                 </div>
@@ -23,8 +23,8 @@
                             <i class="anticon anticon-line-chart"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0">+ 17.21%</h2>
-                            <p class="m-b-0 text-muted">Growth</p>
+                            <h2 class="m-b-0 count">{{dashboardData.closeReportCount}}</h2>
+                            <p class="m-b-0 text-muted">Closed Reports</p>
                         </div>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
                             <i class="anticon anticon-profile"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0">3,685</h2>
-                            <p class="m-b-0 text-muted">Orders</p>
+                            <h2 class="m-b-0 count">{{dashboardData.totalReportCount}}</h2>
+                            <p class="m-b-0 text-muted">Total Reports</p>
                         </div>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
                             <i class="anticon anticon-user"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0">1,832</h2>
-                            <p class="m-b-0 text-muted">Customers</p>
+                            <h2 class="m-b-0 count">{{dashboardData.totalUserCount}}</h2>
+                            <p class="m-b-0 text-muted">Total Users</p>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,13 @@
                         </div> -->
                     </div>
                     <div >
-                        <div id="chart" class="chart-data">
+                        <div id="chart" class="chart-data" *ngIf="!isChartFull">
+                            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                                [xaxis]="chartOptions.xaxis" [dataLabels]="chartOptions.dataLabels"
+                                [grid]="chartOptions.grid" [stroke]="chartOptions.stroke" [title]="chartOptions.title">
+                            </apx-chart>
+                        </div>
+                        <div id="chart" class="chart-data" *ngIf="isChartFull">
                             <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
                                 [xaxis]="chartOptions.xaxis" [dataLabels]="chartOptions.dataLabels"
                                 [grid]="chartOptions.grid" [stroke]="chartOptions.stroke" [title]="chartOptions.title">
@@ -95,7 +101,7 @@
                 <div class="card-body">
                     <h5 class="m-b-0">Customers</h5>
                     <div class="m-v-60 text-center" style="height: 250px">
-                        <div id="chart">
+                        <div id="chart" class="d-flex justify-content-center">
                             <apx-chart
                               [series]="pieChartOptions.series"
                               [chart]="pieChartOptions.chart"

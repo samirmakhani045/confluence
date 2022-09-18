@@ -2,6 +2,7 @@ import { AuthService } from './services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { ObservableService } from './services/observable.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent implements OnInit {
   eventsSubject: Subject<boolean> = new Subject<boolean>();
   constructor(
     router: Router,
-    private authService : AuthService
+    private authService : AuthService,
+    private observableService: ObservableService
   ) {
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
@@ -39,6 +41,7 @@ export class AppComponent implements OnInit {
   sideNavFlag(newflag: boolean) {
     this.isSideNavOpen = newflag;
     this.eventsSubject.next(this.isSideNavOpen);
+    this.observableService.setSidenav(this.isSideNavOpen)
   }
   
 }

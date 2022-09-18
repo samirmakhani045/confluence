@@ -77,3 +77,39 @@
         }
     }
 }
+
+// Small devices
+@media only screen and (max-width: 767px)   { 
+    .main-header-section{
+        width: 100% !important;
+
+        .left-wrapper{
+            margin-left: 23px;
+            .menu-logo{
+                display: none !important;
+            }
+            .logo-text{
+                font-weight: 600 !important;
+                font-size: 18px !important; 
+                margin-right: 32px !important;        
+            }
+        }
+        .right-wrapper{
+           
+            .user-icon-logo{
+                width: 27px !important;
+                height: 25px !important;
+            }
+            .user-details-wrapper{
+                display: none !important;
+            }
+        }
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+    .main-header-section{
+        .menu-logo{
+            display: none !important;
+        }
+    }
+}
