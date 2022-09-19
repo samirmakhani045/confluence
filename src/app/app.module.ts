@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReportComponent } from './components/report/report.component';
 import { EditReportComponent } from './components/report/edit-report/edit-report/edit-report.component';
 import { ObservableService } from './services/observable.service';
+import { BoroughService } from './services/borough.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ObservableService } from './services/observable.service';
     UserService,
     RoleService,
     ObservableService,
+    BoroughService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,

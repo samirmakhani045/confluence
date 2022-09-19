@@ -1,4 +1,9 @@
-<div class="main-content">
+<div class="text-center spinner" *ngIf="isLoading">
+    <div class="spinner-border main-content text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div class="main-content" *ngIf="!isLoading">
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between">
@@ -13,32 +18,31 @@
             </div>
             <div class="row  search-section">
                 <div class="col-sm-2 search-box">
-                    <input type="text" class="form-control" id="userID" [(ngModel)]="queryData.userID"
-                        placeholder="Search By User ID" minlength="1" maxlength="50" name="userID">
+                    <input type="number" class="form-control" id="userID" [(ngModel)]="queryData.userID"
+                        (ngModelChange)="getAllReport()" placeholder="Search By User ID" minlength="1" maxlength="50"
+                        name="userID">
                 </div>
                 <div class="col-sm-2 search-box">
-                    <input type="text" class="form-control" id="broughID" [(ngModel)]="queryData.broughID"
-                        placeholder="Search By Brough ID" minlength="1" maxlength="50" name="broughID">
+                    <input type="number" class="form-control" id="broughID" [(ngModel)]="queryData.broughID"
+                        (ngModelChange)="getAllReport()" placeholder="Search By Brough ID" minlength="1" maxlength="50"
+                        name="broughID">
                 </div>
                 <div class="col-sm-2 search-box">
                     <input type="text" class="form-control" id="streetname" [(ngModel)]="queryData.streetname"
-                        placeholder="Search By Street Name" minlength="1" maxlength="50" name="streetname">
+                        (ngModelChange)="getAllReport()" placeholder="Search By Street Name" minlength="1"
+                        maxlength="50" name="streetname">
                 </div>
                 <div class="col-sm-2 search-box">
                     <input type="text" class="form-control" id="ownerName" [(ngModel)]="queryData.ownerName"
-                        placeholder="Search By Owner Name" minlength="1" maxlength="50" name="ownerName">
+                        (ngModelChange)="getAllReport()" placeholder="Search By Owner Name" minlength="1" maxlength="50"
+                        name="ownerName">
                 </div>
                 <div class="col-sm-2 search-box">
-                    <input type="text" class="form-control" id="dateOfInitialInspection"
-                        [(ngModel)]="queryData.dateOfInitialInspection"
+                    <input type="date" class="form-control" id="dateOfInitialInspection"
+                        [(ngModel)]="queryData.dateOfInitialInspection" (ngModelChange)="getAllReport()" 
                         placeholder="Search By Date Of Initial Inspection" minlength="1" maxlength="50"
                         name="dateOfInitialInspection">
                 </div>
-                <!-- <div class="col-sm-2 search-box">
-                    <input type="text" class="form-control" id="finalizeDate" [(ngModel)]="queryData.finalizeDate"
-                     placeholder="Search By Finalize Date" minlength="1"
-                        maxlength="50" name="finalizeDate">
-                </div> -->
             </div>
             <div class="m-t-25">
                 <div class="table-responsive">
@@ -50,6 +54,7 @@
                                 <th role="columnheader">Street Name</th>
                                 <th role="columnheader">Owner Name</th>
                                 <th role="columnheader"> Date Of Initial Inspection</th>
+                                <th role="columnheader">Is Finalize?</th>
                                 <th role="columnheader">Action</th>
                             </tr>
                         </thead>
@@ -64,8 +69,15 @@
                                 <td role="cell"><span *ngIf="item.ownerName">{{item.ownerName}}</span><span
                                         *ngIf="!item.ownerName"> - </span></td>
                                 <td role="cell"><span
-                                        *ngIf="item.dateOfInitialInspection">{{item.dateOfInitialInspection}}</span><span
-                                        *ngIf="!item.dateOfInitialInspection"> - </span></td>
+                                        *ngIf="item.dateOfInitialInspection">{{item.dateOfInitialInspection |
+                                        date:'dd/MM/yyyy'}}</span><span *ngIf="!item.dateOfInitialInspection"> - </span>
+                                </td>
+                                <td role="cell">
+                                    <span *ngIf="item.isFinalize">Yes</span>
+                                    <span *ngIf="!item.isFinalize">
+                                        <button class="btn finilize-btn" (click)="markFinalize(item)">Mark Finilize</button>
+                                    </span>
+                                </td>
                                 <td role="cell">
                                     <div class="d-flex gap-3">
                                         <div (click)="editUserData(item.id)" class="pointer">

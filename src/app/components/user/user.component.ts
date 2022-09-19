@@ -13,6 +13,8 @@ import { ObservableService } from 'src/app/services/observable.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  isLoading = false;
+  
   roles: any = [];
   userdata: any;
   roleid: any = '';
@@ -31,8 +33,10 @@ export class UserComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.isLoading = true;
     await this.getAllRole();
     this.getAllUser();
+    this.isLoading =  false
   }
 
   async getAllRole() {

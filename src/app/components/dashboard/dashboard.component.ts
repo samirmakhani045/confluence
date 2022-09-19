@@ -45,13 +45,66 @@ export class DashboardComponent implements OnInit {
   public chartOptions: Partial<ChartOptions> | any;
   public pieChartOptions: Partial<PieChartOptions> | any;
   isChartFull = true;
-  isminwidth :any = "100%";
-  dashboardData:any
+  isminwidth: any = "100%";
+  dashboardData: any;
+  isLoading = false;
+  pieChartlabels: any = [];
+  pieChartSeries: any = [];
 
   constructor(
     private observableService: ObservableService,
-    private reportService : ReportService
+    private reportService: ReportService
   ) {
+  }
+
+  async ngOnInit() {
+    this.isLoading = true;
+    await this.getDashboardReport();
+    this.observableService.selectedSidenav$.subscribe((value) => {
+      setTimeout(() => {
+        this.isChartFull = value;
+      }, 500)
+    });
+    this.isLoading = false;
+  }
+
+  async getDashboardReport() {
+    let data: any = await lastValueFrom(this.reportService.getDashboardReport());
+    this.dashboardData = data.model;
+    this.preparePieChart()
+    this.prepareLineChart()
+  }
+
+  preparePieChart() {
+    this.pieChartOptions = {
+      series: this.dashboardData.roleWiseCount.map((s: any) => s.totalUser),
+      chart: {
+        type: "donut",
+        height: '300'
+      },
+      labels: this.dashboardData.roleWiseCount.map((r: any) => r.roleName),
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ],
+      legend: {
+        show: true,
+        position: 'bottom',
+        horizontalAlign: 'center'
+      },
+    };
+  }
+
+  prepareLineChart() {
     this.chartOptions = {
       series: [
         {
@@ -76,7 +129,7 @@ export class DashboardComponent implements OnInit {
         curve: "straight"
       },
       title: {
-        text: "Product Trends by Month",
+        text: "",
         align: "left"
       },
       grid: {
@@ -99,51 +152,6 @@ export class DashboardComponent implements OnInit {
         ]
       }
     };
-
-    this.pieChartOptions = {
-      series: [44, 55, 13, 43, 22],
-      chart: {
-        type: "donut",
-        height: '300'
-      },
-      labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ],
-      legend: {
-        show: true,
-        position: 'bottom',
-        horizontalAlign: 'center'
-      },
-    };
-  }
-
- async ngOnInit() {
-  await this.getDashboardReport();
-    this.observableService.selectedSidenav$.subscribe((value) => { 
-      setTimeout(() => {
-        this.isChartFull = value;
-      }, 500)
-    });
-   
-  }
-
- async getDashboardReport(){
-    let data: any = await lastValueFrom(this.reportService.getDashboardReport());
-    this.dashboardData = data.model;
-    console.log("🚀 ~ file: dashboard.component.ts ~ line 143 ~ DashboardComponent ~ getDashboardReport ~ this.dashboardData", this.dashboardData)
-    
-
   }
 
 }

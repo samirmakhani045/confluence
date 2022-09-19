@@ -1,19 +1,51 @@
 <div class="main-content">
-    <h3>Add User</h3>
+    <h3>{{ (reportData && reportData.id) ? 'Edit' : 'Add' }} Report</h3>
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
                     <form #userForm="ngForm">
                         <div class="form-group row">
+                            <label for="userId" class="col-sm-12 col-form-label">User Id</label>
+                            <div class=" col-sm-12">
+                                <select id="userId" name="userId" class="form-control" placeholder="Choose..." required
+                                    [(ngModel)]="reportData.userId"
+                                    [class.error]="!reportData.userId && isFormSubmitted">
+                                    <option value="" disabled selected>Select one ... </option>
+                                    <option *ngFor="let item of userData" [value]="item.id">{{item.email}}</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="!reportData.userId && isFormSubmitted">
+                                    User Id is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="boroughId" class="col-sm-12 col-form-label">Borough Id</label>
+                            <div class="col-sm-12">
+                                <!-- <input type="text" class="form-control" id="boroughId" placeholder="Enter boroughId"
+                                    [(ngModel)]="reportData.boroughId" required minlength="1" maxlength="50"
+                                    [class.error]="boroughId.invalid && isFormSubmitted" name="boroughId"
+                                    #boroughId="ngModel"> -->
+                                <select id="boroughId" name="boroughId" class="form-control" placeholder="Choose..." required
+                                    [(ngModel)]="reportData.boroughId"
+                                    [class.error]="!reportData.boroughId && isFormSubmitted" #boroughId="ngModel">
+                                    <option value="" selected>Select one ... </option>
+                                    <option *ngFor="let item of allBorough" [value]="item.id">{{item.boroughName}}</option>
+                                </select>
+                                <div class="invalid-feedback" *ngIf="boroughId.invalid && isFormSubmitted">
+                                    Borough Id is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="houseNo" class="col-sm-12 col-form-label">House No</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="houseNo" placeholder="Enter houseNo"
                                     [(ngModel)]="reportData.houseNo" required minlength="1" maxlength="50"
                                     [class.error]="houseNo.invalid && isFormSubmitted" name="houseNo"
-                                    #houseNo="ngModel" required required>
+                                    #houseNo="ngModel">
                                 <div class="invalid-feedback" *ngIf="houseNo.invalid && isFormSubmitted">
-                                    house No is required.
+                                    House No is required.
                                 </div>
                             </div>
                         </div>
@@ -23,45 +55,41 @@
                                 <input type="text" class="form-control" id="streetName" placeholder="Enter streetName"
                                     [(ngModel)]="reportData.streetName" required minlength="1" maxlength="50"
                                     [class.error]="streetName.invalid && isFormSubmitted" name="streetName"
-                                    #streetName="ngModel" required>
+                                    #streetName="ngModel">
                                 <div class="invalid-feedback" *ngIf="streetName.invalid && isFormSubmitted">
-                                    street Name is required.
+                                    Street Name is required.
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="ownerName" class="col-sm-12 col-form-label">Owner Name</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="ownerName"
-                                    placeholder="Enter ownerName" [(ngModel)]="reportData.ownerName" required
-                                    minlength="1" maxlength="50"
+                                <input type="text" class="form-control" id="ownerName" placeholder="Enter ownerName"
+                                    [(ngModel)]="reportData.ownerName" required minlength="1" maxlength="50"
                                     [class.error]="ownerName.invalid && isFormSubmitted" name="ownerName"
-                                    #ownerName="ngModel" required>
+                                    #ownerName="ngModel">
                                 <div class="invalid-feedback" *ngIf="ownerName.invalid && isFormSubmitted">
-                                    owner Name is required.
+                                    Owner Name is required.
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="block" class="col-sm-12 col-form-label">Block</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="block"
-                                    placeholder="Enter block" [(ngModel)]="reportData.block" required
-                                    minlength="1" maxlength="50" [class.error]="block.invalid && isFormSubmitted"
-                                    name="block" #block="ngModel" required>
+                                <input type="text" class="form-control" id="block" placeholder="Enter block"
+                                    [(ngModel)]="reportData.block" required minlength="1" maxlength="50"
+                                    [class.error]="block.invalid && isFormSubmitted" name="block" #block="ngModel">
                                 <div class="invalid-feedback" *ngIf="block.invalid && isFormSubmitted">
-                                    block is required.
+                                    Block is required.
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="lot" class="col-sm-12 col-form-label">Lot</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="lot"
-                                    placeholder="Enter lot" [(ngModel)]="reportData.lot"
-                                    required minlength="1" maxlength="50"
-                                    [class.error]="lot.invalid && isFormSubmitted"
-                                    name="lot" #lot="ngModel" required>
+                                <input type="text" class="form-control" id="lot" placeholder="Enter lot"
+                                    [(ngModel)]="reportData.lot" required minlength="1" maxlength="50"
+                                    [class.error]="lot.invalid && isFormSubmitted" name="lot" #lot="ngModel">
                                 <div class="invalid-feedback" *ngIf="lot.invalid && isFormSubmitted">
                                     Lot is required.
                                 </div>
@@ -72,47 +100,49 @@
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="bin" placeholder="Enter bin"
                                     [(ngModel)]="reportData.bin" required minlength="1" maxlength="50"
-                                    [class.error]="bin.invalid && isFormSubmitted" name="bin"
-                                    #bin="ngModel" required>
+                                    [class.error]="bin.invalid && isFormSubmitted" name="bin" #bin="ngModel">
                                 <div class="invalid-feedback" *ngIf="bin.invalid && isFormSubmitted">
                                     Bin is required.
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="communityBoardNo" class="col-sm-12 col-form-label">Community BoardNo</label>
+                            <label for="communityBoardNo" class="col-sm-12 col-form-label">Community Board No</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="communityBoardNo" placeholder="Enter communityBoardNo"
-                                    [(ngModel)]="reportData.communityBoardNo" required minlength="1" maxlength="50"
-                                    [class.error]="communityBoardNo.invalid && isFormSubmitted" name="communityBoardNo" #communityBoardNo="ngModel"
-                                    required>
+                                <input type="text" class="form-control" id="communityBoardNo"
+                                    placeholder="Enter communityBoardNo" [(ngModel)]="reportData.communityBoardNo"
+                                    required minlength="1" maxlength="50"
+                                    [class.error]="communityBoardNo.invalid && isFormSubmitted" name="communityBoardNo"
+                                    #communityBoardNo="ngModel">
                                 <div class="invalid-feedback" *ngIf="communityBoardNo.invalid && isFormSubmitted">
-                                    Community BoardNo is required.
+                                    Community Board No is required.
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="numberOfStories" class="col-sm-12 col-form-label">NumberOfStories</label>
+                            <label for="numberOfStories" class="col-sm-12 col-form-label">Number Of Stories</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="numberOfStories" placeholder="Enter numberOfStories"
-                                    [(ngModel)]="reportData.numberOfStories" required minlength="1" maxlength="50"
-                                    [class.error]="numberOfStories.invalid && isFormSubmitted" name="numberOfStories" #numberOfStories="ngModel"
-                                    required>
+                                <input type="text" class="form-control" id="numberOfStories"
+                                    placeholder="Enter numberOfStories" [(ngModel)]="reportData.numberOfStories"
+                                    required minlength="1" maxlength="50"
+                                    [class.error]="numberOfStories.invalid && isFormSubmitted" name="numberOfStories"
+                                    #numberOfStories="ngModel">
                                 <div class="invalid-feedback" *ngIf="numberOfStories.invalid && isFormSubmitted">
-                                    NumberOfStories is required.
+                                    Number Of Stories is required.
                                 </div>
 
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="numberOfMeters" class="col-sm-12 col-form-label">NumberOfMeters</label>
+                            <label for="numberOfMeters" class="col-sm-12 col-form-label">Number Of Meters</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="numberOfMeters" placeholder="Enter numberOfMeters"
-                                    [(ngModel)]="reportData.numberOfMeters" required minlength="1" maxlength="50"
-                                    [class.error]="numberOfMeters.invalid && isFormSubmitted" name="numberOfMeters" #numberOfMeters="ngModel"
-                                    required>
+                                <input type="text" class="form-control" id="numberOfMeters"
+                                    placeholder="Enter numberOfMeters" [(ngModel)]="reportData.numberOfMeters" required
+                                    minlength="1" maxlength="50"
+                                    [class.error]="numberOfMeters.invalid && isFormSubmitted" name="numberOfMeters"
+                                    #numberOfMeters="ngModel">
                                 <div class="invalid-feedback" *ngIf="numberOfMeters.invalid && isFormSubmitted">
-                                    NumberOfMeters is required.
+                                    Number Of Meters is required.
                                 </div>
 
                             </div>
@@ -120,10 +150,10 @@
                         <div class="form-group row">
                             <label for="activeMeters" class="col-sm-12 col-form-label">Active Meters</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="activeMeters" placeholder="Enter activeMeters"
-                                    [(ngModel)]="reportData.activeMeters" required minlength="1" maxlength="50"
-                                    [class.error]="activeMeters.invalid && isFormSubmitted" name="activeMeters" #activeMeters="ngModel"
-                                    required>
+                                <input type="text" class="form-control" id="activeMeters"
+                                    placeholder="Enter activeMeters" [(ngModel)]="reportData.activeMeters" required
+                                    minlength="1" maxlength="50" [class.error]="activeMeters.invalid && isFormSubmitted"
+                                    name="activeMeters" #activeMeters="ngModel">
                                 <div class="invalid-feedback" *ngIf="activeMeters.invalid && isFormSubmitted">
                                     Active Meters is required.
                                 </div>
@@ -135,50 +165,76 @@
                                 <input type="text" class="form-control" id="additionalComments"
                                     placeholder="Enter additionalComments" [(ngModel)]="reportData.additionalComments"
                                     required minlength="1" maxlength="50"
-                                    [class.error]="additionalComments.invalid && isFormSubmitted" name="additionalComments"
-                                    #additionalComments="ngModel" required>
+                                    [class.error]="additionalComments.invalid && isFormSubmitted"
+                                    name="additionalComments" #additionalComments="ngModel">
                                 <div class="invalid-feedback" *ngIf="additionalComments.invalid && isFormSubmitted">
                                     Additional Comments is required.
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="additionalCommentsImageName" class="col-sm-12 col-form-label">Additional Comments ImageName
+                            <label for="isAdditionalCommentsImage" class="col-sm-12 col-form-label">Is Additional
+                                Comments Image</label>
+                            <div class=" col-sm-12">
+                                <select id="isAdditionalCommentsImage" name="isAdditionalCommentsImage"
+                                    class="form-control" placeholder="Choose..." required
+                                    [(ngModel)]="reportData.isAdditionalCommentsImage"
+                                    [class.error]="!reportData.isAdditionalCommentsImage && isFormSubmitted">
+                                    <option value="" disabled selected>Select one ... </option>
+                                    <option [value]="true">yes</option>
+                                    <option [value]="false">No</option>
+                                </select>
+                                <div class="invalid-feedback"
+                                    *ngIf="!reportData.isAdditionalCommentsImage && isFormSubmitted">
+                                    Is Additional Comments Image is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="additionalCommentsImageName" class="col-sm-12 col-form-label">Additional
+                                Comments ImageName
                             </label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="additionalCommentsImageName" placeholder="Enter additionalCommentsImageName"
-                                    [(ngModel)]="reportData.additionalCommentsImageName " required minlength="1" maxlength="50"
-                                    [class.error]="additionalCommentsImageName.invalid && isFormSubmitted" name="additionalCommentsImageName" #additionalCommentsImageName="ngModel"
-                                    required>
-                                <div class="invalid-feedback" *ngIf="additionalCommentsImageName.invalid && isFormSubmitted">
+                                <input type="text" class="form-control" id="additionalCommentsImageName"
+                                    placeholder="Enter additionalCommentsImageName"
+                                    [(ngModel)]="reportData.additionalCommentsImageName " required minlength="1"
+                                    maxlength="50"
+                                    [class.error]="additionalCommentsImageName.invalid && isFormSubmitted"
+                                    name="additionalCommentsImageName" #additionalCommentsImageName="ngModel">
+                                <div class="invalid-feedback"
+                                    *ngIf="additionalCommentsImageName.invalid && isFormSubmitted">
                                     Additional Comments ImageName is required.
                                 </div>
 
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="dateOfInitialInspection" class="col-sm-12 col-form-label">DateOfInitial Inspection</label>
+                            <label for="dateOfInitialInspection" class="col-sm-12 col-form-label">Date Of Initial
+                                Inspection {{ reportData.dateOfInitialInspection}}</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="dateOfInitialInspection"
-                                    placeholder="Enter EmployerName" [(ngModel)]="reportData.dateOfInitialInspection" required
-                                    minlength="1" maxlength="50" [class.error]="dateOfInitialInspection.invalid && isFormSubmitted"
-                                    name="dateOfInitialInspection" #dateOfInitialInspection="ngModel" required>
-                                <div class="invalid-feedback" *ngIf="dateOfInitialInspection.invalid && isFormSubmitted">
-                                    DateOfInitial Inspection is required.
-                                </div>
+                                <input type="date" [value]="reportData.dateOfInitialInspection | date:'yyyy-MM-dd'"
+                                    class="form-control" id="dateOfInitialInspection" placeholder="Enter EmployerName"
+                                    required minlength="1" maxlength="50"
+                                    (input)="reportData.dateOfInitialInspection = parseDate($event.target)"
+                                    name="dateOfInitialInspection">
+                                <!-- <div class="invalid-feedback"
+                                    *ngIf="dateOfInitialInspection.invalid && isFormSubmitted">
+                                    Date Of Initial Inspection is required.
+                                </div> -->
                             </div>
                         </div>
                         <div class="row">
                             <div class="d-flex gap-3 col-sm-12 ">
-                              <div>
-                                <button type="submit" class="btn btn-primary" (click)="Back()">Back</button>
-                              </div>
-                              <div>
-                                <button type="submit" class="btn btn-primary" (click)="submit(userForm)">save</button>
-                              </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary" (click)="Back()">Back</button>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary"
+                                        (click)="submit(userForm)">save</button>
+                                </div>
                             </div>
-                          </div>
-                       
+                        </div>
+
                     </form>
                 </div>
             </div>

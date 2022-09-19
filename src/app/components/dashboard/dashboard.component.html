@@ -1,4 +1,9 @@
-<div class="main-content">
+<div class="text-center spinner" *ngIf="isLoading">
+    <div class="spinner-border main-content text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div class="main-content" *ngIf="!isLoading">
     <div class="row">
         <div class="col-md-6 col-lg-3">
             <div class="card">
@@ -8,7 +13,8 @@
                             <i class="anticon anticon-dollar"></i>
                         </div> -->
                         <div class="m-l-15">
-                            <h2 class="m-b-0 pending-count" *ngIf="dashboardData && (dashboardData.pendingReportCount)" >{{dashboardData.pendingReportCount}}</h2>
+                            <h2 class="m-b-0 pending-count" *ngIf="dashboardData && (dashboardData.pendingReportCount)">
+                                {{dashboardData.pendingReportCount}}</h2>
                             <p class="m-b-0 text-muted">Pending Reports</p>
                         </div>
                     </div>
@@ -23,7 +29,8 @@
                             <i class="anticon anticon-line-chart"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0 count"*ngIf="dashboardData && (dashboardData.closeReportCount >=0)">{{dashboardData.closeReportCount}}</h2>
+                            <h2 class="m-b-0 count" *ngIf="dashboardData && (dashboardData.closeReportCount >=0)">
+                                {{dashboardData.closeReportCount}}</h2>
                             <p class="m-b-0 text-muted">Closed Reports</p>
                         </div>
                     </div>
@@ -38,7 +45,8 @@
                             <i class="anticon anticon-profile"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0 count" *ngIf="dashboardData && (dashboardData.totalReportCount)">{{dashboardData.totalReportCount}}</h2>
+                            <h2 class="m-b-0 count" *ngIf="dashboardData && (dashboardData.totalReportCount)">
+                                {{dashboardData.totalReportCount}}</h2>
                             <p class="m-b-0 text-muted">Total Reports</p>
                         </div>
                     </div>
@@ -53,7 +61,8 @@
                             <i class="anticon anticon-user"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0 count" *ngIf="dashboardData && (dashboardData.totalUserCount)">{{dashboardData.totalUserCount}}</h2>
+                            <h2 class="m-b-0 count" *ngIf="dashboardData && (dashboardData.totalUserCount)">
+                                {{dashboardData.totalUserCount}}</h2>
                             <p class="m-b-0 text-muted">Total Users</p>
                         </div>
                     </div>
@@ -66,7 +75,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5>Total Revenue</h5>
+                        <h5 class="chart-title">Reports (Last 30 Days)</h5>
                         <!-- <div>
                             <div class="btn-group">
                                 <button class="btn btn-default active">
@@ -79,7 +88,7 @@
                             </div>
                         </div> -->
                     </div>
-                    <div >
+                    <div>
                         <div id="chart" class="chart-data" *ngIf="!isChartFull">
                             <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
                                 [xaxis]="chartOptions.xaxis" [dataLabels]="chartOptions.dataLabels"
@@ -99,17 +108,13 @@
         <div class="col-md-12 col-lg-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="m-b-0">Customers</h5>
+                    <h5 class="m-b-0 chart-title">Users</h5>
                     <div class="m-v-60 text-center" style="height: 250px">
                         <div id="chart" class="d-flex justify-content-center">
-                            <apx-chart
-                              [series]="pieChartOptions.series"
-                              [chart]="pieChartOptions.chart"
-                              [labels]="pieChartOptions.labels"
-                              [responsive]="pieChartOptions.responsive"
-                              [legend]="pieChartOptions.legend"
-                            ></apx-chart>
-                          </div>
+                            <apx-chart [series]="pieChartOptions.series" [chart]="pieChartOptions.chart"
+                                [labels]="pieChartOptions.labels" [responsive]="pieChartOptions.responsive"
+                                [legend]="pieChartOptions.legend"></apx-chart>
+                        </div>
                     </div>
                 </div>
             </div>

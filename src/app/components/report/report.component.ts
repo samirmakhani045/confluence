@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
+import * as moment from 'moment';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class ReportComponent implements OnInit {
     dateOfInitialInspection: '',
     finalizeDate: ''
   }
+  isLoading = false;
 
   reportData :any
 
@@ -29,17 +31,45 @@ export class ReportComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.getAllReport();
+    this.isLoading = false;
   }
 
   async getAllReport(){
-    let data:any = await lastValueFrom(this.reportservice.getAllReport());
-    this.reportData = data.model;
-    console.log("🚀 ~ file: report.component.ts ~ line 36 ~ ReportComponent ~ getAllReport ~ this.reportData", this.reportData)
+
+    let reportData : any = {}
+    if (this.queryData.userID || this.queryData.broughID || this.queryData.streetname || this.queryData.ownerName || this.queryData.dateOfInitialInspection) {
+      reportData = await lastValueFrom(this.reportservice.getReportFilterData(this.queryData));
+    } else {
+      reportData = await lastValueFrom(this.reportservice.getAllReport());
+    }
+    this.reportData = reportData.model;
   }
 
   addReportData(){
     this.router.navigate([`report/add`])
+  }
+
+  markFinalize(report : any) {
+    Swal.fire({
+      title: 'Are you sure want to mark finilize?',
+      text: '',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, i want!',
+      cancelButtonText: 'No, keep it'
+    }).then(async (result) => {
+      if (result.value) {
+        let body = new FormData();
+        const data = {
+          ReportIds: report.id,
+          isFinalize: true
+        }
+        await lastValueFrom(this.reportservice.updateReportStatus(data));
+        this.getAllReport();
+      }
+    })
   }
 
   editUserData(id:any){

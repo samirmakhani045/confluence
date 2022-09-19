@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { BoroughService } from 'src/app/services/borough.service';
 
 @Component({
   selector: 'app-edit-report',
@@ -19,28 +20,11 @@ export class EditReportComponent implements OnInit {
   plumberData: any
   plumberEmail: any
 
+  userData :any = []
   isFormSubmitted = false;
-  reportData: any = {
-    id : 0,
-    boroughId : 0,
-    userId: "",
-    houseNo: "",
-    streetName: "",
-    ownerName: "",
-    block: "",
-    lot: "",
-    bin: "",
-    communityBoardNo: "",
-    numberOfStories: "",
-    numberOfMeters: "",
-    activeMeters: "",
-    additionalComments: "",
-    additionalCommentsImageName: "",
-    dateOfInitialInspection: "",
-    isAdditionalCommentsImage: true,
-    isFinalize: true,
-  }
+  reportData: any = {}
   editId:any
+  allBorough : any = []
 
   private _http: any;
   constructor(
@@ -49,10 +33,13 @@ export class EditReportComponent implements OnInit {
     private notifyService: NotificationService,
     private reportService: ReportService,
     private authService: AuthService,
+    private boroughService: BoroughService,
     private route: ActivatedRoute
   ) { }
 
   async ngOnInit() {
+    await this.getAllUser();
+    await this.getAllBorough();
     this.route.paramMap.subscribe(paramMap => {
       if (paramMap.get('id') !== 'add') {
         this.editId = paramMap.get('id');
@@ -61,42 +48,59 @@ export class EditReportComponent implements OnInit {
     })
   }
 
+  async getAllBorough() {
+    const data: any = await lastValueFrom(this.boroughService.getAllBorough());
+    this.allBorough = data.model;
+  }
+
+  async getAllUser(){
+    let data: any = await lastValueFrom(this.userService.getAllUser());
+    this.userData = data.model;
+  }
+
+  parseDate(target: any){
+    if (target.value) {
+        return new Date(target.value);
+    }
+    return null;
+  }
+
   async getById(){
     const data: any = await lastValueFrom(this.reportService.getById(this.editId));
     this.reportData = data.model;
-    console.log("🚀 ~ file: edit-report.component.ts ~ line 67 ~ EditReportComponent ~ getById ~  this.reportData",  this.reportData)
-    debugger
+    this.reportData.dateOfInitialInspection = new Date(this.reportData.dateOfInitialInspection)
+    console.log("🚀 ~ file: edit-report.component.ts ~ line 55 ~ EditReportComponent ~ getById ~ this.reportData", this.reportData)
   }
-
-
 
   async submit(form: any) {
     this.isFormSubmitted = true;
-    let userId = this.authService.getUserInfo();
+    // this.reportData.dateOfInitialInspection = new Date(this.reportData.dateOfInitialInspection)
     if (form.valid) {
       try {
-        if (userId.id) {
-          this.reportData.userId = userId.id;
-        } else {
-          this.reportData.userId = 0;
-        }
-        this.reportData.dateOfInitialInspection = new Date(this.reportData.dateOfInitialInspection).toISOString();
         let body = new FormData();
-        body.append('userId', this.reportData.userId);
-        body.append('houseNo', this.reportData.houseNo);
-        body.append('streetName', this.reportData.streetName);
-        body.append('ownerName', this.reportData.ownerName);
-        body.append('block', this.reportData.block);
-        body.append('lot', this.reportData.lot);
-        body.append('communityBoardNo', this.reportData.communityBoardNo);
-        body.append('numberOfStories', this.reportData.numberOfStories);
-        body.append('numberOfMeters', this.reportData.numberOfMeters);
-        body.append('additionalComments', this.reportData.additionalComments);
-        body.append('additionalCommentsImageName', this.reportData.additionalCommentsImageName);
-        body.append('isFinalize', this.reportData.isFinalize);
-        body.append('employerName', this.reportData.employerName);
-        body.append('licenseNumber', this.reportData.licenseNumber);
-        const data: any = await lastValueFrom(this.reportService.save(body));
+        body.append('UserId', this.reportData.userId);
+        body.append('HouseNo', this.reportData.houseNo);
+        body.append('StreetName', this.reportData.streetName);
+        body.append('OwnerName', this.reportData.ownerName);
+        body.append('BoroughId', this.reportData.boroughId);
+        body.append('Block', this.reportData.block);
+        body.append('LOT', this.reportData.lot);
+        body.append('BIN', this.reportData.bin);
+        body.append('CommunityBoardNo', this.reportData.communityBoardNo);
+        body.append('NumberOfStories', this.reportData.numberOfStories);
+        body.append('NumberOfMeters', this.reportData.numberOfMeters);
+        body.append('ActiveMeters', this.reportData.activeMeters);
+        body.append('AdditionalComments', this.reportData.additionalComments);
+        body.append('IsAdditionalCommentsImage', this.reportData.isAdditionalCommentsImage);
+        body.append('AdditionalCommentsImageName', this.reportData.additionalCommentsImageName);
+        body.append('DateOfInitialInspection', new Date(this.reportData.dateOfInitialInspection).toISOString());
+        let data : any = {};
+        if (this.reportData.id) {
+          body.append('Id', this.reportData.id);
+          data = await lastValueFrom(this.reportService.save(body));
+        } else {
+          data = await lastValueFrom(this.reportService.save(body));
+        }
         if(data.success === true){
           this.notifyService.showSuccess(data.message);
           this.router.navigate(['report'])

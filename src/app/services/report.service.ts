@@ -17,30 +17,26 @@ export class ReportService {
   }
 
   getById(id:any){
-    return this.apiSevice.get(environment.api_url, 'Report/GetReportsByReportId' , id)
+    return this.apiSevice.get(environment.api_url, `Report/${id}`)
   }
 
   getAllReport(){
     return this.apiSevice.get(environment.api_url, 'Report/All')
   }
-
-  editReport(data :any){
-    return this.apiSevice.post(environment.api_url, 'Report/UpdateReportStatus' , data)
-  }
-
+  
   deleteReport(id: string) {
     return this.apiSevice.delete(environment.api_url, `Report/${id}`);
   }
 
   updateReportStatus(data: any) {
-    return this.apiSevice.post(environment.api_url, `Report/UpdateReportStatus`, data);
+    return this.apiSevice.post(environment.api_url, `Report/UpdateReportStatus?ReportIds=${data.ReportIds}&isFinalize=true`, {});
   }
 
   getDashboardReport(){
     return this.apiSevice.get(environment.api_url, 'Report/GetDashboardReport')
   }
 
-  getUserFilterData(data: any) {
+  getReportFilterData(data: any) {
     let params = new HttpParams();
     if (data.userID) {
       params = params.append("UserID", data.userID);
@@ -49,7 +45,7 @@ export class ReportService {
       params = params.append("BoroughID", data.broughID);
     }
     if (data.streetname) {
-      params = params.append("BusinessName", data.streetname);
+      params = params.append("Streetname", data.streetname);
     }
     if (data.ownerName) {
       params = params.append("OwnerName", data.ownerName);

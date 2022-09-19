@@ -107,3 +107,13 @@ thead tr:last-child{
 		margin-top: 10px;
     }
 }
+
+.finilize-btn {
+	background: #19409a;
+    color: #fff;
+
+	&:hover {
+		background: #19409a94;
+		color: #fff;
+	}
+}
