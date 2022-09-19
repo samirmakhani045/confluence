@@ -24,8 +24,7 @@ export class SidnavComponent implements OnInit {
    
   } 
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {  
     this.eventsSubscription = this.events.subscribe((data) => {
       this.sideNavFlag = data;
     });

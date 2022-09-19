@@ -128,14 +128,14 @@ export class DashboardComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
-  
-    this.observableService.selectedSidenav$.subscribe((value) => {
-      this.getDashboardReport();
+ async ngOnInit() {
+  await this.getDashboardReport();
+    this.observableService.selectedSidenav$.subscribe((value) => { 
       setTimeout(() => {
         this.isChartFull = value;
       }, 500)
     });
+   
   }
 
  async getDashboardReport(){

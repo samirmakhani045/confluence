@@ -8,7 +8,7 @@
                             <i class="anticon anticon-dollar"></i>
                         </div> -->
                         <div class="m-l-15">
-                            <h2 class="m-b-0 pending-count">{{dashboardData.pendingReportCount}}</h2>
+                            <h2 class="m-b-0 pending-count" *ngIf="dashboardData && (dashboardData.pendingReportCount)" >{{dashboardData.pendingReportCount}}</h2>
                             <p class="m-b-0 text-muted">Pending Reports</p>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                             <i class="anticon anticon-line-chart"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0 count">{{dashboardData.closeReportCount}}</h2>
+                            <h2 class="m-b-0 count"*ngIf="dashboardData && (dashboardData.closeReportCount >=0)">{{dashboardData.closeReportCount}}</h2>
                             <p class="m-b-0 text-muted">Closed Reports</p>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             <i class="anticon anticon-profile"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0 count">{{dashboardData.totalReportCount}}</h2>
+                            <h2 class="m-b-0 count" *ngIf="dashboardData && (dashboardData.totalReportCount)">{{dashboardData.totalReportCount}}</h2>
                             <p class="m-b-0 text-muted">Total Reports</p>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                             <i class="anticon anticon-user"></i>
                         </div>
                         <div class="m-l-15">
-                            <h2 class="m-b-0 count">{{dashboardData.totalUserCount}}</h2>
+                            <h2 class="m-b-0 count" *ngIf="dashboardData && (dashboardData.totalUserCount)">{{dashboardData.totalUserCount}}</h2>
                             <p class="m-b-0 text-muted">Total Users</p>
                         </div>
                     </div>
