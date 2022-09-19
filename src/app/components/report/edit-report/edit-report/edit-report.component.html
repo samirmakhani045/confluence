@@ -52,7 +52,7 @@
                         <div class="form-group row">
                             <label for="streetName" class="col-sm-12 col-form-label">Street Name</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="streetName" placeholder="Enter streetName"
+                                <input type="text" class="form-control" id="streetName" placeholder="Enter street Name"
                                     [(ngModel)]="reportData.streetName" required minlength="1" maxlength="50"
                                     [class.error]="streetName.invalid && isFormSubmitted" name="streetName"
                                     #streetName="ngModel">
@@ -64,7 +64,7 @@
                         <div class="form-group row">
                             <label for="ownerName" class="col-sm-12 col-form-label">Owner Name</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="ownerName" placeholder="Enter ownerName"
+                                <input type="text" class="form-control" id="ownerName" placeholder="Enter owner Name"
                                     [(ngModel)]="reportData.ownerName" required minlength="1" maxlength="50"
                                     [class.error]="ownerName.invalid && isFormSubmitted" name="ownerName"
                                     #ownerName="ngModel">
@@ -110,7 +110,7 @@
                             <label for="communityBoardNo" class="col-sm-12 col-form-label">Community Board No</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="communityBoardNo"
-                                    placeholder="Enter communityBoardNo" [(ngModel)]="reportData.communityBoardNo"
+                                    placeholder="Enter community Board No" [(ngModel)]="reportData.communityBoardNo"
                                     required minlength="1" maxlength="50"
                                     [class.error]="communityBoardNo.invalid && isFormSubmitted" name="communityBoardNo"
                                     #communityBoardNo="ngModel">
@@ -123,7 +123,7 @@
                             <label for="numberOfStories" class="col-sm-12 col-form-label">Number Of Stories</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="numberOfStories"
-                                    placeholder="Enter numberOfStories" [(ngModel)]="reportData.numberOfStories"
+                                    placeholder="Enter Number Of Stories" [(ngModel)]="reportData.numberOfStories"
                                     required minlength="1" maxlength="50"
                                     [class.error]="numberOfStories.invalid && isFormSubmitted" name="numberOfStories"
                                     #numberOfStories="ngModel">
@@ -137,7 +137,7 @@
                             <label for="numberOfMeters" class="col-sm-12 col-form-label">Number Of Meters</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="numberOfMeters"
-                                    placeholder="Enter numberOfMeters" [(ngModel)]="reportData.numberOfMeters" required
+                                    placeholder="Enter Number Of Meters" [(ngModel)]="reportData.numberOfMeters" required
                                     minlength="1" maxlength="50"
                                     [class.error]="numberOfMeters.invalid && isFormSubmitted" name="numberOfMeters"
                                     #numberOfMeters="ngModel">
@@ -151,7 +151,7 @@
                             <label for="activeMeters" class="col-sm-12 col-form-label">Active Meters</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="activeMeters"
-                                    placeholder="Enter activeMeters" [(ngModel)]="reportData.activeMeters" required
+                                    placeholder="Enter Active Meters" [(ngModel)]="reportData.activeMeters" required
                                     minlength="1" maxlength="50" [class.error]="activeMeters.invalid && isFormSubmitted"
                                     name="activeMeters" #activeMeters="ngModel">
                                 <div class="invalid-feedback" *ngIf="activeMeters.invalid && isFormSubmitted">
@@ -163,7 +163,7 @@
                             <label for="additionalComments" class="col-sm-12 col-form-label">Additional Comments</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="additionalComments"
-                                    placeholder="Enter additionalComments" [(ngModel)]="reportData.additionalComments"
+                                    placeholder="Enter Additional Comments" [(ngModel)]="reportData.additionalComments"
                                     required minlength="1" maxlength="50"
                                     [class.error]="additionalComments.invalid && isFormSubmitted"
                                     name="additionalComments" #additionalComments="ngModel">
@@ -192,11 +192,11 @@
                         </div>
                         <div class="form-group row">
                             <label for="additionalCommentsImageName" class="col-sm-12 col-form-label">Additional
-                                Comments ImageName
+                                Comments Image Name
                             </label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="additionalCommentsImageName"
-                                    placeholder="Enter additionalCommentsImageName"
+                                    placeholder="Enter Additional Comments Image Name"
                                     [(ngModel)]="reportData.additionalCommentsImageName " required minlength="1"
                                     maxlength="50"
                                     [class.error]="additionalCommentsImageName.invalid && isFormSubmitted"
@@ -213,7 +213,7 @@
                                 Inspection {{ reportData.dateOfInitialInspection}}</label>
                             <div class="col-sm-12">
                                 <input type="date" [value]="reportData.dateOfInitialInspection | date:'yyyy-MM-dd'"
-                                    class="form-control" id="dateOfInitialInspection" placeholder="Enter EmployerName"
+                                    class="form-control" id="dateOfInitialInspection" placeholder="Enter Employer Name"
                                     required minlength="1" maxlength="50"
                                     (input)="reportData.dateOfInitialInspection = parseDate($event.target)"
                                     name="dateOfInitialInspection">
